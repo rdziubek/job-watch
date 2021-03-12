@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <title>Menedżer zadań</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Patryk Dziurkowski, Robert Dziubek 4E">
+
+    <link rel="stylesheet" href="resources/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/main.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <script src="resources/js/component/employee.js"></script>
+    <script src="resources/js/component/task.js"></script>
+    <script src="resources/js/component/binding.js"></script>
+    <script src="resources/js/enum/key.js"></script>
+    <script src="resources/js/enum/form.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <section class="button-container">
+        <!-- Guzik na dodawanie pracownika do zadania: -->
+        <button class="button button-employee-add">Utwórz pracownika</button>
+        <!-- Guzik na usuwanie pracownika z zadania: -->
+        <button class="button button-employee-delete">Usuń pracownika</button>
+        <!-- Guzik na dodawanie zadania (bez pracowników): -->
+        <button class="button button-task-add">Utwórz zadanie</button>
+        <!-- Guzik na usuwanie calego zadania: -->
+        <button class="button button-task-delete">Usuń zadanie</button>
+        <!-- Guzik na powiazywanie: -->
+        <button class="button button-employee-task-assign">Dodaj pracownika do zadania</button>
+        <!-- Guzik na rozwiazywanie: -->
+        <button class="button button-employee-task-retain">Usuń pracownika z zadania</button>
+    </section>
+    <section class="form-container"></section>
+</div>
+<script src="resources/js/events.js"></script>
+<script src="resources/js/main.js"></script>
+<script src="resources/js/generator.js"></script>
+</body>
+</html>
