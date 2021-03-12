@@ -20,10 +20,10 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
         employeeDelete({
             employeeId: selectEmployee.options[selectEmployee.selectedIndex],
         });
-        //user picks one employee to delete from a <select> list of <option>s
-        //we then get his selected option and pass it to main and:
-        //a) we pass his position in that select (option.value)
-        //b) we pass the option object and delete it in main
+        // TODO: user picks one employee to delete from a <select> list of <option>s
+        //  we then get his selected option and pass it to main and:
+        //    a) we pass his position in that select (option.value)
+        //    b) we pass the option object and delete it in main
     });
 
     document.querySelector(`.select-employee`).addEventListener(`click`, () => {

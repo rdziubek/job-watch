@@ -21,7 +21,7 @@ const Form = {
         </h2>
         <label>Pracownik:
             <select class="select-employee">
-                <option value="0">⠀Jan Paweł II⠀</option><!--TODO: usunac debugowe wartosci-->
+                <option value="0">⠀Jan Paweł II⠀</option> <!-- TODO: usunac debugowe wartosci -->
             </select>
         </label>
         <input type="submit" class="submit-employee-delete" value="Usuń">
@@ -50,7 +50,7 @@ const Form = {
         </h2>
         <label>Zadanie:
             <select class="select-task">
-                <option value="0">⠀Sans granie⠀</option> <!--TODO: usunac debugowe wartosci-->
+                <option value="0">⠀Sans granie⠀</option> <!-- TODO: usunac debugowe wartosci -->
             </select>
         </label>
         <input type="submit" class="submit-task-delete" value="Usuń">
