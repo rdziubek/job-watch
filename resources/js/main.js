@@ -81,7 +81,5 @@ function renderTaskList() {
  * @param {Form} form
  */
 function renderForm(form) {
-    document.querySelector(`.form-container`).appendChild(
-        Generator.htmlToElement(form)
-    )
+    document.querySelector(`.form-container`).innerHTML = form;
 }
