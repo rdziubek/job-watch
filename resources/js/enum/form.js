@@ -11,9 +11,6 @@ const Form = {
         <label>Nazwisko
             <input type="text" class="surname">
         </label>
-        <label>Rola
-            <input type="text" class="role">
-        </label>
         <input type="submit" class="submit-employee-add" value="Dodaj">
     </form>`,
 
@@ -63,7 +60,7 @@ const Form = {
     ASSIGN: `<!-- Assign an employee to a task -->
     <form class="form-employee-task-assign">
         <h2>
-            Przydziel Zadanie
+            Przydziel zadanie
         </h2>
         <label>Zadanie:
             <select class="select-task">
@@ -74,6 +71,9 @@ const Form = {
             <select class="select-employee">
                 <option value="">⠀Wybierz pracownika⠀</option>
             </select>
+        </label>
+        <label>Rola
+            <input type="text" class="role">
         </label>
         <input type="submit" class="submit-employee-task-assign" value="Przydziel">
     </form>`,
