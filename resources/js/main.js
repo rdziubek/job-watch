@@ -30,8 +30,8 @@ function employeeDelete(form) {
 }
 
 function taskAdd(form) {
-    employees.push(new Employee(...form))
-    updateStorage(Key.EMPLOYEE, employees)
+    tasks.push(new Task(...form))
+    updateStorage(Key.TASK, employees)
 
     // TODO: same as employeeAdd
 }
