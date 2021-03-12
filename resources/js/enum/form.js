@@ -14,7 +14,7 @@ const Form = {
         <label>Rola
             <input type="text" class="role">
         </label>
-        <input type="submit" class="submit-employee-add" value="Wykonaj">
+        <input type="submit" class="submit-employee-add" value="Dodaj">
     </form>`,
 
         DELETE: `<!-- Delete an employee from "the database" -->
@@ -22,12 +22,12 @@ const Form = {
         <h2>
             Usuń pracownika
         </h2>
-        <label>Usuń pracownika:
+        <label>Pracownik:
             <select class="select-employee">
                 <option value="0">⠀Jan Paweł II⠀</option><!--TODO: usunac debugowe wartosci-->
             </select>
         </label>
-        <input type="submit" class="submit-employee-delete" value="Wykonaj">
+        <input type="submit" class="submit-employee-delete" value="Usuń">
     </form>`,
     },
 
@@ -43,7 +43,7 @@ const Form = {
         <label>Czas na wykonanie
             <input type="number" class="time-remaining">
         </label>
-        <input type="submit" class="submit-task-add" value="Wykonaj">
+        <input type="submit" class="submit-task-add" value="Utwórz">
     </form>`,
 
         DELETE: `<!-- Delete a task from "the database" -->
@@ -51,12 +51,12 @@ const Form = {
         <h2>
             Usuń zadanie
         </h2>
-        <label>Usuń zadanie:
+        <label>Zadanie:
             <select class="select-task">
                 <option value="0">⠀Sans granie⠀</option> <!--TODO: usunac debugowe wartosci-->
             </select>
         </label>
-        <input type="submit" class="submit-task-delete" value="Wykonaj">
+        <input type="submit" class="submit-task-delete" value="Usuń">
     </form>`,
     },
 
@@ -65,17 +65,17 @@ const Form = {
         <h2>
             Przydziel Zadanie
         </h2>
-        <label>Wybierz zadanie
+        <label>Zadanie:
             <select class="select-task">
                 <option value="">⠀Wybierz zadanie⠀</option>
             </select>
         </label>
-        <label>Dodaj pracownika:
+        <label>Pracownik:
             <select class="select-employee">
                 <option value="">⠀Wybierz pracownika⠀</option>
             </select>
         </label>
-        <input type="submit" class="submit-employee-task-assign" value="Wykonaj">
+        <input type="submit" class="submit-employee-task-assign" value="Przydziel">
     </form>`,
 
     RETAIN: `<!-- Un-assign an employee from a task -->
@@ -83,16 +83,16 @@ const Form = {
         <h2>
             Usuń pracownika z zadania
         </h2>
-        <label>Wybierz zadanie
+        <label>Zadanie:
             <select class="select-task">
                 <option value="">⠀Wybierz zadanie⠀</option>
             </select>
         </label>
-        <label>Usuń pracownika:
+        <label>Pracownik:
             <select class="select-employee">
                 <option value="">⠀Wybierz pracownika⠀</option>
             </select>
         </label>
-        <input type="submit" class="submit-employee-task-retain" value="Wykonaj">
+        <input type="submit" class="submit-employee-task-retain" value="Usuń">
     </form>`,
 }
