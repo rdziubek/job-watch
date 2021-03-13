@@ -15,19 +15,19 @@ function updateStorage(key, object) {
         JSON.stringify(object))
 }
 
-function employeeAdd(form) {
-    employees.push(new Employee(...form))
+function employeeAdd(employee) {
+    employees.push(employee)
 
     updateStorage(Key.EMPLOYEE, employees)
 }
 
-function taskAdd(form) {
-    tasks.push(new Task(...form))
+function taskAdd(task) {
+    tasks.push(task)
 
-    updateStorage(Key.TASK, employees)
+    updateStorage(Key.TASK, tasks)
 }
 
-function employeeDelete(form) {
+function employeeDelete(employeeId) {
     // TODO:
     //  logic behind the script:
     //  Delete an employee in a select list:
@@ -36,17 +36,17 @@ function employeeDelete(form) {
     //  what about glue.js???
 }
 
-function taskDelete(form) {
+function taskDelete(taskId) {
     // TODO: logic behind the script:
     //  Same as employeeDelete
 }
 
-function employeeTaskAssign(form) {
+function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
     // TODO: get a task and an employee (both existing) from the form parameter
     //  glue.js them together
 }
 
-function employeeTaskRetain(form) {
+function employeeTaskRetain(taskId, employeeId) {
     // TODO: get a task and an employee (both existing) from the form parameter
     //  destroy their glue.js link
 }

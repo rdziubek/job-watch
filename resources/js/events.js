@@ -5,10 +5,10 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.ADD);
 
     document.querySelector(`.submit-employee-add`).addEventListener(`click`, (e) => {
-        employeeAdd({
-            employeeName: document.querySelector(`.name`),
-            employeeSurname: document.querySelector(`.surname`),
-        });
+        employeeAdd(
+            new Employee(
+                document.querySelector(`.name`).value,
+                document.querySelector(`.surname`).value));
 
         e.preventDefault();
     });
@@ -22,9 +22,9 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
 
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
-        employeeDelete({
-            employeeId: selectEmployee.options[selectEmployee.selectedIndex],
-        });
+
+        employeeDelete(
+            selectEmployee.options[selectEmployee.selectedIndex].value);
 
         // TODO: user picks one employee to delete from a <select> list of <option>s
         //  we then get his selected option and pass it to main and:
@@ -48,10 +48,10 @@ document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.TASK.ADD);
 
     document.querySelector(`.submit-task-add`).addEventListener(`click`, (e) => {
-        taskAdd({
-            taskName: document.querySelector(`.name`),
-            taskTimeRemaining: document.querySelector(`.time-remaining`),
-        });
+        taskAdd(
+            new Task(
+                document.querySelector(`.name`).value,
+                document.querySelector(`.time-remaining`).value));
 
         e.preventDefault();
     });
@@ -65,9 +65,9 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
 
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
-        taskDelete({
-            taskId: selectTask.options[selectTask.selectedIndex]
-        });
+
+        taskDelete(
+            selectTask.options[selectTask.selectedIndex].value);
 
         e.preventDefault();
     });
@@ -89,11 +89,10 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
         const selectTask = document.querySelector(`.select-task`);
         const selectEmployee = document.querySelector(`.select-employee`);
 
-        employeeTaskAssign({
-            taskId: selectTask.options[selectTask.selectedIndex],
-            employeeId: selectEmployee.options[selectEmployee.selectedIndex],
-            employeeTaskRole: document.querySelector(`.role`),
-        });
+        employeeTaskAssign(
+            selectTask.options[selectTask.selectedIndex].value,
+            selectEmployee.options[selectEmployee.selectedIndex].value,
+            document.querySelector(`.role`).value);
 
         e.preventDefault();
     });
@@ -120,10 +119,9 @@ document.querySelector(`.button-employee-task-retain`).addEventListener(`click`,
         const selectTask = document.querySelector(`.select-task`);
         const selectEmployee = document.querySelector(`.select-employee`);
 
-        employeeTaskRetain({
-            taskId: selectTask.options[selectTask.selectedIndex],
-            employeeId: selectEmployee.options[selectEmployee.selectedIndex],
-        });
+        employeeTaskRetain(
+            selectTask.options[selectTask.selectedIndex].value,
+            selectEmployee.options[selectEmployee.selectedIndex].value);
 
         e.preventDefault();
     });
