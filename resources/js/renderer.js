@@ -4,13 +4,14 @@ class Renderer {
      * Updates drop-down list dataset.
      */
     static renderEmployeeList() {
-        const selects = document.querySelectorAll(`.select-employee`);
-        for (const select of selects) {
-            for (const employee in employees) {
-                const option = document.createElement(`option`);
-                //option.innerText = employee.name + ...;
-                document.select.appendChild(option);
-            }
+        const select = document.querySelector(`.select-employee`);
+
+        for (const employee in employees) {
+            const option = document.createElement(`option`);
+
+            // TODO:
+            //  option.innerText = employee.name + ...;
+            select.appendChild(option);
         }
     }
 
@@ -18,13 +19,14 @@ class Renderer {
      * Updates drop-down list dataset.
      */
     static renderTaskList() {
-        const selects = document.querySelectorAll(`.select-task`);
-        for (const select of selects) {
-            for (const task in tasks) {
-                const option = document.createElement(`option`);
-                //option.innerText = task.name + ...;
-                document.select.appendChild(option);
-            }
+        const select = document.querySelector(`.select-task`);
+
+        for (const task in tasks) {
+            const option = document.createElement(`option`);
+
+            // TODO:
+            //  option.innerText = task.name + ...;
+            select.appendChild(option);
         }
     }
 
