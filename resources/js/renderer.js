@@ -69,18 +69,21 @@ class Renderer {
         this.clearBuffer(employeeContainer, taskContainer, bindingContainer);
 
         employees.map(employee =>
-            employeeContainer.appendChild(
-                this.formEntity(`${employee._name} ${employee._surname}`)));
+            employee !== null ?
+                employeeContainer.appendChild(
+                    this.formEntity(`${employee._name} ${employee._surname}`)) : null);
         tasks.map(task =>
-            taskContainer.appendChild(
-                this.formEntity(`${task._name} ${task._timeRemaining}`)));
+            task !== null ?
+                taskContainer.appendChild(
+                    this.formEntity(`${task._name} ${task._timeRemaining}`)) : null);
         bindings.map(binding =>
-            bindingContainer.appendChild(
-                this.formEntity(`${
-                    employees[binding._employeeId]._name} ${
-                    tasks[binding._taskId]._name} ${
-                    binding._role} ${
-                    tasks[binding._taskId]._timeRemaining} h`)));
+            binding !== null && employees[binding._employeeId] !== null && tasks[binding._taskId] !== null ?
+                bindingContainer.appendChild(
+                    this.formEntity(`${
+                        employees[binding._employeeId]._name} ${
+                        tasks[binding._taskId]._name} ${
+                        binding._role} ${
+                        tasks[binding._taskId]._timeRemaining} h`)) : null);
     }
 
     /**
