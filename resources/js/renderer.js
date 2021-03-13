@@ -38,7 +38,7 @@ class Renderer {
 
         for (const task of tasks) {
             const option = document.createElement(`option`);
-            option.innerText = task.name;
+            option.innerText = task._name;
             select.appendChild(option);
         }
     }
