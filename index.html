@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <title>Menedżer zadań</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Patryk Dziurkowski, Robert Dziubek 4E">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="resources/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/main.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <script src="resources/js/enum/key.js"></script>
+    <script src="resources/js/enum/indexes.js"></script>
+    <script src="resources/js/enum/form.js"></script>
+    <script src="resources/js/enum/timing.js"></script>
+    <script src="resources/js/component/employee.js"></script>
+    <script src="resources/js/component/task.js"></script>
+    <script src="resources/js/component/binding.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <section class="button-container">
+        <button class="button button-employee-add">Utwórz pracownika</button>
+        <button class="button button-employee-delete">Usuń pracownika</button>
+        <button class="button button-task-add">Utwórz zadanie</button>
+        <button class="button button-task-delete">Usuń zadanie</button>
+        <button class="button button-employee-task-assign">Dodaj pracownika do zadania</button>
+        <button class="button button-employee-task-retain">Usuń pracownika z zadania</button>
+    </section>
+    <section class="form-container"></section>
+    <section class="current-employees-container"></section>
+    <section class="current-tasks-container"></section>
+    <section class="current-bindings-container"></section>
+    <section class="progress-container"></section>
+</div>
+<script src="resources/js/persistent-manager.js"></script>
+<script src="resources/js/renderer.js"></script>
+<script src="resources/js/events.js"></script>
+<script src="resources/js/job-watch.js"></script>
+</body>
+</html>

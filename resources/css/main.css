@@ -1,0 +1,112 @@
+:root {
+    --color-banana: #FFF587;
+    --color-watermelon: #FF8C64;
+    --color-tomato: #FF665A;
+    --color-eggplant: #7D6B7D;
+    --color-grey: #A3A1A8;
+}
+
+*, body, html {
+    font-family: 'Jetbrains Mono', sans-serif;
+    text-align: center;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-grey);
+}
+
+/* Container elements */
+
+.wrapper {
+    width: 45rem;
+    background-color: white;
+    margin: auto;
+    padding: 1rem;
+    min-height: 100vh;
+}
+
+.button-container {
+    /* 3x 10rem buttons + 2x 1rem gaps */
+    width: 32rem;
+    display: grid;
+    grid-template-columns: repeat(3, 10rem);
+    gap: 1rem;
+    margin: auto;
+}
+
+.form-container {
+    margin: 2rem auto;
+}
+
+.component-container {
+    margin: 2rem auto;
+}
+
+.progress-container {
+    margin: 2rem auto;
+}
+
+entity {
+
+}
+
+/* Individual elements */
+.button, input[type="submit"]{
+    height: 4rem;
+    background-color: var(--color-watermelon);
+    border: 0.05rem solid black;
+    transition: background-color 0.1s ease-in-out;
+}
+
+input[type="submit"]{
+    width: 6rem;
+    height: 3rem;
+    margin: 1rem;
+}
+
+.button:hover, input[type="submit"]:hover {
+    background-color: var(--color-tomato);
+}
+
+select, option {
+    min-width: 6rem;
+}
+
+h2::after{
+    content: '';
+    width: 80%;
+    height: 1px;
+    background-color: var(--color-grey);
+    display: block;
+    margin: 0.5rem auto;
+}
+
+/* Media queries */
+/* Large devices (desktops, up to 1200px) */
+@media (max-width: 1200px) {
+
+}
+
+/* Medium devices (tablets, up to 992px) */
+@media (max-width: 992px) {
+
+}
+
+/* Small devices (landscape phones, up to 768px) */
+@media (max-width: 768px) {
+    .button-container {
+        grid-template-columns: repeat(2, 10rem);
+        /* 2x 10rem buttons + 1x 1rem gap */
+        width: 21rem;
+    }
+    .wrapper {
+        width: 100vw;
+    }
+}
+
+/* Extra small devices (phones, up to 576px) */
+@media (max-width: 576px) {
+
+}
