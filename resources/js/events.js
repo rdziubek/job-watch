@@ -9,8 +9,6 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
             new Employee(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.surname`).value));
-
-        e.preventDefault();
     });
 });
 
@@ -24,8 +22,7 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
 
-        employeeDelete(Number(
-            selectEmployee.options[selectEmployee.selectedIndex].value));
+        employeeDelete(selectEmployee.selectedIndex);
     });
 });
 
@@ -54,7 +51,7 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
         const selectTask = document.querySelector(`.select-task`);
 
         taskDelete(Number(
-            selectTask.options[selectTask.selectedIndex].value));
+            selectTask.options[selectTask.selectedIndex]));
     });
 });
 
@@ -91,7 +88,7 @@ document.querySelector(`.button-employee-task-retain`).addEventListener(`click`,
         const selectEmployee = document.querySelector(`.select-employee`);
 
         employeeTaskRetain(
-            selectTask.options[selectTask.selectedIndex].value,
-            selectEmployee.options[selectEmployee.selectedIndex].value);
+            selectTask.options[selectTask.selectedIndex],
+            selectEmployee.options[selectEmployee.selectedIndex]);
     });
 });

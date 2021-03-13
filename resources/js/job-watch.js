@@ -32,8 +32,10 @@ function employeeDelete(employeeId) {
     /**
      * Remove instance.
      */
+    console.log('deleting:', employees[employeeId]);
     employees.splice(employeeId, 1);
     PersistentManager.updateStorage(Key.EMPLOYEE, employees);
+
 
     /**
      * Remove related bindings.
@@ -44,12 +46,14 @@ function employeeDelete(employeeId) {
      */
     for (let i of bindings.keys()) {
         if (employeeId === bindings[i].employeeId) {
+            console.log('deleting:', bindings[i]);
             bindings[i].splice(i, 1);
 
             i -= 1;
         }
     }
-    PersistentManager.updateStorage(Key.BINDING, bindings);
+    bindings.splice(0, bindings.length);
+    PersistentManager.updateStorage(Key.BINDING, '');
 }
 
 /**
@@ -119,11 +123,7 @@ function employeeTaskRetain(taskId, employeeId) {
  * Update UI state.
  */
 setInterval(() => {
-    // TODO: Delete debug logs
-    console.log(...employees);
-    console.log(...tasks);
-    console.log(...bindings);
-    console.log(`^====================^`);
+    console.log('bindings after deletion:', ...bindings);
 
     Renderer.renderEntities();
 }, Timing.UI_UPDATE_INTERVAL);
