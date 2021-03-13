@@ -1,22 +1,31 @@
 class Binding {
-    constructor(task, employee) {
-        this._task = task;
-        this._employee = employee;
+    constructor(taskId, employeeId, role) {
+        this._taskId = taskId;
+        this._employeeId = employeeId;
+        this._role = role;
     }
 
-    get task() {
-        return this._task;
+    get taskId() {
+        return this._taskId;
     }
 
-    set task(value) {
-        this._task = value;
+    set taskId(value) {
+        this._taskId = value;
     }
 
-    get employee() {
-        return this._employee;
+    get employeeId() {
+        return this._employeeId;
     }
 
-    set employee(value) {
-        this._employee = value;
+    set employeeId(value) {
+        this._employeeId = value;
+    }
+
+    get role() {
+        return this._role;
+    }
+
+    set role(value) {
+        this._role = value;
     }
 }
