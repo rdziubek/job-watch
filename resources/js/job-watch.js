@@ -31,29 +31,25 @@ function taskAdd(task) {
 function employeeDelete(employeeId) {
     /**
      * Remove instance.
+     * NOTE: Employee removed by inserting a `null` value so that other references remain untouched
+     *  (new instances always put on top of a stack).
      */
-    console.log('deleting:', employees[employeeId]);
-    employees.splice(employeeId, 1);
+    employees[employeeId] = null;
     PersistentManager.updateStorage(Key.EMPLOYEE, employees);
 
 
     /**
      * Remove related bindings.
      *
-     * NOTE: If the employee had more than one task assigned, after removing one binding from the bindings
-     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
-     *  hence the counter correction – `i - 1` when an element gets removed.
+     * NOTE: Binding removed by inserting a `null` value so that other references remain untouched
+     *  (new instances always put on top of a stack).
      */
     for (let i of bindings.keys()) {
         if (employeeId === bindings[i].employeeId) {
-            console.log('deleting:', bindings[i]);
-            bindings[i].splice(i, 1);
-
-            i -= 1;
+            bindings[i] = null;
         }
     }
-    bindings.splice(0, bindings.length);
-    PersistentManager.updateStorage(Key.BINDING, '');
+    PersistentManager.updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -64,21 +60,18 @@ function taskDelete(taskId) {
     /**
      * Remove instance.
      */
-    tasks.splice(taskId, 1);
+    tasks[taskId] = null;
     PersistentManager.updateStorage(Key.TASK, tasks);
 
     /**
      * Remove related bindings.
      *
-     * NOTE: If the task had more than one employee assigned, after removing one binding from the bindings
-     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
-     *  hence the counter correction – `i - 1` when an element gets removed.
+     * NOTE: Task removed by inserting a `null` value so that other references remain untouched
+     *  (new instances always put on top of a stack).
      */
     for (let i of bindings.keys()) {
         if (taskId === bindings[i].taskId) {
-            bindings[i].splice(i, 1);
-
-            i -= 1;
+            bindings[i] = null;
         }
     }
     PersistentManager.updateStorage(Key.BINDING, bindings);
@@ -103,16 +96,13 @@ function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
  */
 function employeeTaskRetain(taskId, employeeId) {
     /**
-     * NOTE: If an employee had more than one task assigned, after removing one binding from the bindings
-     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
-     *  hence the counter correction – `i - 1` when an element gets removed.
+     * NOTE: Binding removed by inserting a `null` value so that other references remain untouched
+     *  (new instances always put on top of a stack).
      */
     for (let i of bindings.keys()) {
         if (employeeId === bindings[i].employeeId &&
             taskId === bindings[i].taskId) {
-            bindings[i].splice(i, 1);
-
-            i -= 1;
+            bindings[i] = null;
         }
     }
 
@@ -123,7 +113,5 @@ function employeeTaskRetain(taskId, employeeId) {
  * Update UI state.
  */
 setInterval(() => {
-    console.log('bindings after deletion:', ...bindings);
-
     Renderer.renderEntities();
 }, Timing.UI_UPDATE_INTERVAL);

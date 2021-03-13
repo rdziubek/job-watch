@@ -13,7 +13,12 @@ class Renderer {
 
         employees.map(employee => {
             const option = document.createElement(`option`);
-            option.innerText = `${employee._name} ${employee._surname}`;
+
+            if (employee === null) {
+                option.style.display = `none`;
+            } else {
+                option.innerText = `${employee._name} ${employee._surname}`;
+            }
 
             select.appendChild(option);
         });
@@ -32,7 +37,12 @@ class Renderer {
 
         tasks.map(task => {
             const option = document.createElement(`option`);
-            option.innerText = task._name;
+
+            if (task === null) {
+                option.style.display = `none`;
+            } else {
+                option.innerText = task._name;
+            }
 
             select.appendChild(option);
         });
