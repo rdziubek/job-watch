@@ -23,8 +23,8 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
 
-        employeeDelete(
-            selectEmployee.options[selectEmployee.selectedIndex].value);
+        employeeDelete(Number(
+            selectEmployee.options[selectEmployee.selectedIndex].value));
 
         // TODO: user picks one employee to delete from a <select> list of <option>s
         //  we then get his selected option and pass it to main and:
@@ -66,8 +66,8 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
 
-        taskDelete(
-            selectTask.options[selectTask.selectedIndex].value);
+        taskDelete(Number(
+            selectTask.options[selectTask.selectedIndex].value));
 
         e.preventDefault();
     });
@@ -90,8 +90,8 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
         const selectEmployee = document.querySelector(`.select-employee`);
 
         employeeTaskAssign(
-            selectTask.options[selectTask.selectedIndex].value,
-            selectEmployee.options[selectEmployee.selectedIndex].value,
+            Number(selectTask.options[selectTask.selectedIndex].value),
+            Number(selectEmployee.options[selectEmployee.selectedIndex].value),
             document.querySelector(`.role`).value);
 
         e.preventDefault();
