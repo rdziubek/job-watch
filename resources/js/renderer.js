@@ -32,7 +32,7 @@ class Renderer {
 
     /**
      * Renders a form in-place.
-     * @param {Form} form
+     * @param {Form | String} form
      */
     static renderForm(form) {
         document.querySelector(`.form-container`).innerHTML = form;
