@@ -5,24 +5,13 @@ const tasks = []
 const bindings = []
 
 /**
- * Updates permanent storage.
- * @param {Key | string} key Where to save the data to.
- * @param {Object} object Data to be saved.
- */
-function updateStorage(key, object) {
-    localStorage.setItem(
-        key,
-        JSON.stringify(object))
-}
-
-/**
  * Adds an employee.
  * @param {Employee} employee An employee to be added.
  */
 function employeeAdd(employee) {
     employees.push(employee)
 
-    updateStorage(Key.EMPLOYEE, employees)
+    PersistentManager.updateStorage(Key.EMPLOYEE, employees)
 }
 
 /**
@@ -32,7 +21,7 @@ function employeeAdd(employee) {
 function taskAdd(task) {
     tasks.push(task)
 
-    updateStorage(Key.TASK, tasks)
+    PersistentManager.updateStorage(Key.TASK, tasks)
 }
 
 /**
@@ -44,7 +33,7 @@ function employeeDelete(employeeId) {
      * Remove instance.
      */
     employees.splice(employeeId, 1);
-    updateStorage(Key.EMPLOYEE, employees);
+    PersistentManager.updateStorage(Key.EMPLOYEE, employees);
 
     /**
      * Remove related bindings.
@@ -60,7 +49,7 @@ function employeeDelete(employeeId) {
             i -= 1;
         }
     }
-    updateStorage(Key.BINDING, bindings);
+    PersistentManager.updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -72,7 +61,7 @@ function taskDelete(taskId) {
      * Remove instance.
      */
     tasks.splice(taskId, 1);
-    updateStorage(Key.TASK, tasks);
+    PersistentManager.updateStorage(Key.TASK, tasks);
 
     /**
      * Remove related bindings.
@@ -88,7 +77,7 @@ function taskDelete(taskId) {
             i -= 1;
         }
     }
-    updateStorage(Key.BINDING, bindings);
+    PersistentManager.updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -100,7 +89,7 @@ function taskDelete(taskId) {
 function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
     bindings.push(new Binding(taskId, employeeId, employeeTaskRole));
 
-    updateStorage(Key.BINDING, bindings);
+    PersistentManager.updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -123,7 +112,7 @@ function employeeTaskRetain(taskId, employeeId) {
         }
     }
 
-    updateStorage(Key.BINDING, bindings);
+    PersistentManager.updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -131,11 +120,10 @@ function employeeTaskRetain(taskId, employeeId) {
  */
 setInterval(() => {
     // TODO: Delete debug logs
-    console.log(employees);
-    console.log(tasks);
-    console.log(bindings);
+    console.log(...employees);
+    console.log(...tasks);
+    console.log(...bindings);
     console.log(`^====================^`);
-    // TODO: Show current application state here, i.e. every employee, task and bounds between them.
 
     Renderer.renderEntities();
 }, Timing.UI_UPDATE_INTERVAL);

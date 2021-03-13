@@ -42,6 +42,10 @@ class Renderer {
      * Renders current employee, task and binding status in a corresponding field.
      */
     static renderEntities() {
+        const employeeContainer = document.querySelector(`.current-employees-container`);
+        const taskContainer = document.querySelector(`.current-tasks-container`);
+        const bindingContainer = document.querySelector(`.current-bindings-container`);
+
         /**
          * Update data-set with persistent-storage.
          */
@@ -49,12 +53,24 @@ class Renderer {
         PersistentManager.updateDataSet(employees, Key.EMPLOYEE);
         PersistentManager.updateDataSet(bindings, Key.BINDING);
 
+        /**
+         * Clear buffer and map elements into UI.
+         */
+        this.clearBuffer(employeeContainer, taskContainer, bindingContainer);
+
         employees.map(employee =>
-            Renderer.formEntity(`${employee._name} ${employee._surname}`));
+            employeeContainer.appendChild(
+                this.formEntity(`${employee._name} ${employee._surname}`)));
         tasks.map(task =>
-            Renderer.formEntity(`${task._name} ${task._timeRemaining}`));
+            taskContainer.appendChild(
+                this.formEntity(`${task._name} ${task._timeRemaining}`)));
         bindings.map(binding =>
-            Renderer.formEntity(`${binding._employeeId} ${binding._taskId}`));
+            bindingContainer.appendChild(
+                this.formEntity(`${
+                    employees[binding._employeeId]._name} ${
+                    tasks[binding._taskId]._name} ${
+                    binding._role} ${
+                    tasks[binding._taskId]._timeRemaining} h`)));
     }
 
     /**
@@ -76,5 +92,13 @@ class Renderer {
         template.innerHTML = `<p>${content}</p>`;
 
         return template;
+    }
+
+    /**
+     * Clears the passed nodes empty.
+     * @param {...Node} nodes
+     */
+    static clearBuffer(...nodes) {
+        nodes.map(node => node.innerHTML = ``);
     }
 }
