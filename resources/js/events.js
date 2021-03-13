@@ -71,8 +71,8 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
         const selectEmployee = document.querySelector(`.select-employee`);
 
         employeeTaskAssign(
-            Number(selectTask.options[selectTask.selectedIndex].value),
-            Number(selectEmployee.options[selectEmployee.selectedIndex].value),
+            Number(selectTask.selectedIndex),
+            Number(selectEmployee.selectedIndex),
             document.querySelector(`.role`).value);
         e.preventDefault();
     });

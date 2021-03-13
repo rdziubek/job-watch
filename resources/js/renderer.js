@@ -11,11 +11,12 @@ class Renderer {
          */
         PersistentManager.updateDataSet(employees, Key.EMPLOYEE);
 
-        for (const employee of employees) {
+        employees.map(employee => {
             const option = document.createElement(`option`);
             option.innerText = `${employee._name} ${employee._surname}`;
+
             select.appendChild(option);
-        }
+        });
     }
 
     /**
@@ -29,11 +30,12 @@ class Renderer {
          */
         PersistentManager.updateDataSet(tasks, Key.TASK);
 
-        for (const task of tasks) {
+        tasks.map(task => {
             const option = document.createElement(`option`);
             option.innerText = task._name;
+
             select.appendChild(option);
-        }
+        });
     }
 
     /**
@@ -47,9 +49,12 @@ class Renderer {
         PersistentManager.updateDataSet(employees, Key.EMPLOYEE);
         PersistentManager.updateDataSet(bindings, Key.BINDING);
 
-        for (const task of tasks) {
-
-        }
+        employees.map(employee =>
+            Renderer.formEntity(`${employee._name} ${employee._surname}`));
+        tasks.map(task =>
+            Renderer.formEntity(`${task._name} ${task._timeRemaining}`));
+        bindings.map(binding =>
+            Renderer.formEntity(`${binding._employeeId} ${binding._taskId}`));
     }
 
     /**
@@ -58,5 +63,18 @@ class Renderer {
      */
     static renderForm(form) {
         document.querySelector(`.form-container`).innerHTML = form;
+    }
+
+    /**
+     * Creates entity element to be rendered.
+     * @param content Content of the created node.
+     * @returns {Node}
+     */
+    static formEntity(content) {
+        const template = document.createElement(`entity`);
+
+        template.innerHTML = `<p>${content}</p>`;
+
+        return template;
     }
 }

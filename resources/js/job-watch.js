@@ -98,7 +98,6 @@ function taskDelete(taskId) {
  * @param {string} employeeTaskRole Role fulfilled by the employee assigned.
  */
 function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
-    // TODO: Bindings don't work and they reset localStorage
     bindings.push(new Binding(taskId, employeeId, employeeTaskRole));
 
     updateStorage(Key.BINDING, bindings);

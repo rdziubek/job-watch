@@ -1,6 +1,6 @@
 class Task {
     /**
-     * @param name
+     * @param {string} name Task description.
      * @param {number} timeRemaining Specified in whole hours.
      */
     constructor(name, timeRemaining) {

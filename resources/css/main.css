@@ -16,19 +16,60 @@ body {
 
 }
 
+/* Container elements */
+
+.wrapper {
+
+}
+
+.button-container {
+
+}
+
 .form-container {
     width: 80%;
 }
 
-.button:hover {
+.component-container {
 
 }
 
-form {
-    opacity: 1;
-    transition: opacity 0.4s ease-in-out, display 0.4s ease-in-out;
+.progress-container {
+
 }
 
-button, input[type="submit"]{
+entity {
+
+}
+
+/* Individual elements */
+.button, input[type="submit"]{
+    height: 3rem;
+    background-color: var(--color-watermelon);
+}
+
+.button:hover, input[type="submit"]:hover {
+    background-color: var(--color-tomato);
+}
+
+
+/* Media queries */
+/* Large devices (desktops, up to 1200px) */
+@media (max-width: 1200px) {
+
+}
+
+/* Medium devices (tablets, up to 992px) */
+@media (max-width: 992px) {
+
+}
+
+/* Small devices (landscape phones, up to 768px) */
+@media (max-width: 768px) {
+
+}
+
+/* Extra small devices (phones, up to 576px) */
+@media (max-width: 576px) {
 
 }
