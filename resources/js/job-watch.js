@@ -131,8 +131,10 @@ function employeeTaskRetain(taskId, employeeId) {
  */
 setInterval(() => {
     // TODO: Delete debug logs
+    console.log(`=====================`)
     console.log(employees);
     console.log(tasks);
     console.log(bindings);
+    console.log(`^====================^`);
     // TODO: Show current application state here, i.e. every employee, task and bounds between them.
 }, Timing.UI_UPDATE_INTERVAL);

@@ -9,13 +9,15 @@ class Renderer {
         /**
          * Update data-set with persistent-storage.
          */
-        // employees = JSON.parse(localStorage.getItem(Key.EMPLOYEE));
+        employees.splice(
+            0,
+            employees.length,
+            ...JSON.parse(localStorage.getItem(Key.EMPLOYEE)));
 
-        for (const employee in employees) {
+            console.log(employees);
+        for (const employee of employees) {
             const option = document.createElement(`option`);
-
-            option.innerText = 'dummy';
-
+            option.innerText = `${employee._name} ${employee._surname}`;
             select.appendChild(option);
         }
     }
@@ -26,11 +28,17 @@ class Renderer {
     static renderTaskList() {
         const select = document.querySelector(`.select-task`);
 
-        for (const task in tasks) {
-            const option = document.createElement(`option`);
+        /**
+         * Update data-set with persistent-storage.
+         */
+        tasks.splice(
+            0,
+            tasks.length,
+            ...JSON.parse(localStorage.getItem(Key.TASK)));
 
-            // TODO:
-            //  option.innerText = task.name + ...;
+        for (const task of tasks) {
+            const option = document.createElement(`option`);
+            option.innerText = task.name;
             select.appendChild(option);
         }
     }
