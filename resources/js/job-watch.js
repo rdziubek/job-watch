@@ -6,7 +6,7 @@ const bindings = []
 
 /**
  * Updates permanent storage.
- * @param {Key} key Where to save the data to.
+ * @param {Key | String} key Where to save the data to.
  * @param {Object} object Data to be saved.
  */
 function updateStorage(key, object) {
