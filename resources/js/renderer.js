@@ -6,12 +6,16 @@ class Renderer {
     static renderEmployeeList() {
         const select = document.querySelector(`.select-employee`);
 
+        /**
+         * Update data-set with persistent-storage.
+         */
+        // employees = JSON.parse(localStorage.getItem(Key.EMPLOYEE));
+
         for (const employee in employees) {
             const option = document.createElement(`option`);
 
-            // TODO:
-            //  option.innerText = employee.name + ...;
-            //option.innerText = localStorage.getItem();
+            option.innerText = 'dummy';
+
             select.appendChild(option);
         }
     }
