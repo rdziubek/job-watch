@@ -26,16 +26,6 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
 
         employeeDelete(Number(
             selectEmployee.options[selectEmployee.selectedIndex].value));
-
-        // TODO: user picks one employee to delete from a <select> list of <option>s
-        //  we then get his selected option and pass it to main and:
-        //    a) we pass his position in that select (option.value)
-        //    b) we pass the option object and delete it in main
-    });
-
-    document.querySelector(`.select-employee`).addEventListener(`click`, (e) => {
-        // TODO: this is unnecessary as it renders each time a form gets dynamically created
-        // Renderer.renderEmployeeList();
     });
 });
 
@@ -66,11 +56,6 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
         taskDelete(Number(
             selectTask.options[selectTask.selectedIndex].value));
     });
-
-    document.querySelector(`.select-task`).addEventListener(`click`, (e) => {
-        // TODO: this is unnecessary as it renders each time a form gets dynamically created
-        // Renderer.renderTaskList();
-    });
 });
 
 /**
@@ -89,15 +74,7 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
             Number(selectTask.options[selectTask.selectedIndex].value),
             Number(selectEmployee.options[selectEmployee.selectedIndex].value),
             document.querySelector(`.role`).value);
-    });
-
-    document.querySelector(`.select-employee`).addEventListener(`click`, (e) => {
-        // TODO: this is unnecessary as it renders each time a form gets dynamically created
-        // Renderer.renderEmployeeList();
-    });
-    document.querySelector(`.select-task`).addEventListener(`click`, (e) => {
-        // TODO: this is unnecessary as it renders each time a form gets dynamically created
-        // Renderer.renderTaskList();
+        e.preventDefault();
     });
 });
 
@@ -116,14 +93,5 @@ document.querySelector(`.button-employee-task-retain`).addEventListener(`click`,
         employeeTaskRetain(
             selectTask.options[selectTask.selectedIndex].value,
             selectEmployee.options[selectEmployee.selectedIndex].value);
-    });
-
-    document.querySelector(`.select-employee`).addEventListener(`click`, (e) => {
-        // TODO: this is unnecessary as it renders each time a form gets dynamically created
-        // Renderer.renderEmployeeList();
-    });
-    document.querySelector(`.select-task`).addEventListener(`click`, (e) => {
-        // TODO: this is unnecessary as it renders each time a form gets dynamically created
-        // Renderer.renderTaskList();
     });
 });

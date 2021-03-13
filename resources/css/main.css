@@ -28,3 +28,7 @@ form {
     opacity: 1;
     transition: opacity 0.4s ease-in-out, display 0.4s ease-in-out;
 }
+
+button, input[type="submit"]{
+
+}

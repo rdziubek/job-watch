@@ -9,12 +9,8 @@ class Renderer {
         /**
          * Update data-set with persistent-storage.
          */
-        employees.splice(
-            0,
-            employees.length,
-            ...JSON.parse(localStorage.getItem(Key.EMPLOYEE)));
+        PersistentManager.updateDataSet(employees, Key.EMPLOYEE);
 
-            console.log(employees);
         for (const employee of employees) {
             const option = document.createElement(`option`);
             option.innerText = `${employee._name} ${employee._surname}`;
@@ -31,10 +27,7 @@ class Renderer {
         /**
          * Update data-set with persistent-storage.
          */
-        tasks.splice(
-            0,
-            tasks.length,
-            ...JSON.parse(localStorage.getItem(Key.TASK)));
+        PersistentManager.updateDataSet(tasks, Key.TASK);
 
         for (const task of tasks) {
             const option = document.createElement(`option`);
@@ -44,8 +37,24 @@ class Renderer {
     }
 
     /**
+     * Renders current employee, task and binding status in a corresponding field.
+     */
+    static renderEntities() {
+        /**
+         * Update data-set with persistent-storage.
+         */
+        PersistentManager.updateDataSet(tasks, Key.TASK);
+        PersistentManager.updateDataSet(employees, Key.EMPLOYEE);
+        PersistentManager.updateDataSet(bindings, Key.BINDING);
+
+        for (const task of tasks) {
+
+        }
+    }
+
+    /**
      * Renders a form in-place.
-     * @param {Form | String} form
+     * @param {Form | string} form
      */
     static renderForm(form) {
         document.querySelector(`.form-container`).innerHTML = form;

@@ -6,7 +6,7 @@ const bindings = []
 
 /**
  * Updates permanent storage.
- * @param {Key | String} key Where to save the data to.
+ * @param {Key | string} key Where to save the data to.
  * @param {Object} object Data to be saved.
  */
 function updateStorage(key, object) {
@@ -98,6 +98,7 @@ function taskDelete(taskId) {
  * @param {string} employeeTaskRole Role fulfilled by the employee assigned.
  */
 function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
+    // TODO: Bindings don't work and they reset localStorage
     bindings.push(new Binding(taskId, employeeId, employeeTaskRole));
 
     updateStorage(Key.BINDING, bindings);
@@ -131,10 +132,11 @@ function employeeTaskRetain(taskId, employeeId) {
  */
 setInterval(() => {
     // TODO: Delete debug logs
-    console.log(`=====================`)
     console.log(employees);
     console.log(tasks);
     console.log(bindings);
     console.log(`^====================^`);
     // TODO: Show current application state here, i.e. every employee, task and bounds between them.
+
+    Renderer.renderEntities();
 }, Timing.UI_UPDATE_INTERVAL);
