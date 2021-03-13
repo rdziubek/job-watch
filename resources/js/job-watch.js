@@ -40,10 +40,6 @@ function taskAdd(task) {
  * @param {number} employeeId Employee to be removed at the given index.
  */
 function employeeDelete(employeeId) {
-
-    // TODO: Update rendered employee list.
-    //  ? Possibly already being (and should be) updated on generation
-
     /**
      * Remove instance.
      */
@@ -72,10 +68,6 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
-
-    // TODO: Update rendered task list.
-    //  ? Possibly already being (and should be) updated on generation
-
     /**
      * Remove instance.
      */
