@@ -42,8 +42,29 @@ function taskAdd(task) {
 function employeeDelete(employeeId) {
 
     // TODO: Update rendered employee list.
-    // TODO: Remove all existing bindings {@see Binding} where the
-    //  deleted employee is present (identified by employee's id).
+    //  ? Possibly already being (and should be) updated on generation
+
+    /**
+     * Remove instance.
+     */
+    employees.splice(employeeId, 1);
+    updateStorage(Key.EMPLOYEE, employees);
+
+    /**
+     * Remove related bindings.
+     *
+     * NOTE: If the employee had more than one task assigned, after removing one binding from the bindings
+     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
+     *  hence the counter correction – `i - 1` when an element gets removed.
+     */
+    for (let i of bindings.keys()) {
+        if (employeeId === bindings[i].employeeId) {
+            bindings[i].splice(i, 1);
+
+            i -= 1;
+        }
+    }
+    updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -53,8 +74,29 @@ function employeeDelete(employeeId) {
 function taskDelete(taskId) {
 
     // TODO: Update rendered task list.
-    // TODO: Remove all existing bindings {@see Binding} where the
-    //  deleted task is present (identified by task's id).
+    //  ? Possibly already being (and should be) updated on generation
+
+    /**
+     * Remove instance.
+     */
+    tasks.splice(taskId, 1);
+    updateStorage(Key.TASK, tasks);
+
+    /**
+     * Remove related bindings.
+     *
+     * NOTE: If the task had more than one employee assigned, after removing one binding from the bindings
+     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
+     *  hence the counter correction – `i - 1` when an element gets removed.
+     */
+    for (let i of bindings.keys()) {
+        if (taskId === bindings[i].taskId) {
+            bindings[i].splice(i, 1);
+
+            i -= 1;
+        }
+    }
+    updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -64,8 +106,9 @@ function taskDelete(taskId) {
  * @param {string} employeeTaskRole Role fulfilled by the employee assigned.
  */
 function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
+    bindings.push(new Binding(taskId, employeeId, employeeTaskRole));
 
-    // TODO: Create a binding object.
+    updateStorage(Key.BINDING, bindings);
 }
 
 /**
@@ -74,8 +117,21 @@ function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
  * @param employeeId Employee's {@see Employee} id from which the task is to be retained.
  */
 function employeeTaskRetain(taskId, employeeId) {
+    /**
+     * NOTE: If an employee had more than one task assigned, after removing one binding from the bindings
+     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
+     *  hence the counter correction – `i - 1` when an element gets removed.
+     */
+    for (let i of bindings.keys()) {
+        if (employeeId === bindings[i].employeeId &&
+            taskId === bindings[i].taskId) {
+            bindings[i].splice(i, 1);
 
-    // TODO: Remove a binding object (identified by a pair of task and employee ids).
+            i -= 1;
+        }
+    }
+
+    updateStorage(Key.BINDING, bindings);
 }
 
 /**
