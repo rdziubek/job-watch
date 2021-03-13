@@ -5,7 +5,7 @@ const tasks = []
 const bindings = []
 
 /**
- * Update permanent storage.
+ * Updates permanent storage.
  * @param {Key} key Where to save the data to.
  * @param {Object} object Data to be saved.
  */
@@ -15,40 +15,123 @@ function updateStorage(key, object) {
         JSON.stringify(object))
 }
 
-function employeeAdd(form) {
-    employees.push(new Employee(...form))
+/**
+ * Adds an employee.
+ * @param {Employee} employee An employee to be added.
+ */
+function employeeAdd(employee) {
+    employees.push(employee)
 
     updateStorage(Key.EMPLOYEE, employees)
 }
 
-function taskAdd(form) {
-    tasks.push(new Task(...form))
+/**
+ * Creates a task.
+ * @param {Task} task A task to be added.
+ */
+function taskAdd(task) {
+    tasks.push(task)
 
-    updateStorage(Key.TASK, employees)
+    updateStorage(Key.TASK, tasks)
 }
 
-function employeeDelete(form) {
-    // TODO:
-    //  logic behind the script:
-    //  Delete an employee in a select list:
-    //  form parameter passes that given employee into this scope from the <select> list
-    //  first destroy that given employee object instance, then destroy all its mentions in <select> list (although SetInterval can do that for us)
-    //  what about glue.js???
+/**
+ * Removes a given employee.
+ * @param {number} employeeId Employee to be removed at the given index.
+ */
+function employeeDelete(employeeId) {
+
+    // TODO: Update rendered employee list.
+    //  ? Possibly already being (and should be) updated on generation
+
+    /**
+     * Remove instance.
+     */
+    employees.splice(employeeId, 1);
+    updateStorage(Key.EMPLOYEE, employees);
+
+    /**
+     * Remove related bindings.
+     *
+     * NOTE: If the employee had more than one task assigned, after removing one binding from the bindings
+     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
+     *  hence the counter correction – `i - 1` when an element gets removed.
+     */
+    for (let i of bindings.keys()) {
+        if (employeeId === bindings[i].employeeId) {
+            bindings[i].splice(i, 1);
+
+            i -= 1;
+        }
+    }
+    updateStorage(Key.BINDING, bindings);
 }
 
-function taskDelete(form) {
-    // TODO: logic behind the script:
-    //  Same as employeeDelete
+/**
+ * Removes a given task.
+ * @param {number} taskId Task to be removed at the given index.
+ */
+function taskDelete(taskId) {
+
+    // TODO: Update rendered task list.
+    //  ? Possibly already being (and should be) updated on generation
+
+    /**
+     * Remove instance.
+     */
+    tasks.splice(taskId, 1);
+    updateStorage(Key.TASK, tasks);
+
+    /**
+     * Remove related bindings.
+     *
+     * NOTE: If the task had more than one employee assigned, after removing one binding from the bindings
+     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
+     *  hence the counter correction – `i - 1` when an element gets removed.
+     */
+    for (let i of bindings.keys()) {
+        if (taskId === bindings[i].taskId) {
+            bindings[i].splice(i, 1);
+
+            i -= 1;
+        }
+    }
+    updateStorage(Key.BINDING, bindings);
 }
 
-function employeeTaskAssign(form) {
-    // TODO: get a task and an employee (both existing) from the form parameter
-    //  glue.js them together
+/**
+ * Creates an employee-task bond.
+ * @param {number} taskId Task's {@see Task} id to which the employee is to be assigned.
+ * @param {number} employeeId Employee's {@see Employee} id to which the task is to be assigned.
+ * @param {string} employeeTaskRole Role fulfilled by the employee assigned.
+ */
+function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
+    bindings.push(new Binding(taskId, employeeId, employeeTaskRole));
+
+    updateStorage(Key.BINDING, bindings);
 }
 
-function employeeTaskRetain(form) {
-    // TODO: get a task and an employee (both existing) from the form parameter
-    //  destroy their glue.js link
+/**
+ * Removes the employee-task bond.
+ * @param taskId Task's {@see Task} id from which the employee is to be retained.
+ * @param employeeId Employee's {@see Employee} id from which the task is to be retained.
+ */
+function employeeTaskRetain(taskId, employeeId) {
+    /**
+     * NOTE: If an employee had more than one task assigned, after removing one binding from the bindings
+     *  array the array would shorten by one element, therefore also misaligning with the iteration counter –
+     *  hence the counter correction – `i - 1` when an element gets removed.
+     */
+    for (let i of bindings.keys()) {
+        if (employeeId === bindings[i].employeeId &&
+            taskId === bindings[i].taskId) {
+            bindings[i].splice(i, 1);
+
+            i -= 1;
+        }
+    }
+
+    updateStorage(Key.BINDING, bindings);
 }
 
 /**
