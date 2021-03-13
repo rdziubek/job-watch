@@ -52,37 +52,9 @@ function employeeTaskRetain(form) {
 }
 
 /**
- * Updates drop-down list dataset.
+ * Update UI state.
  */
-function renderEmployeeList() {
-    const selects = document.querySelectorAll(`.select-employee`);
-    for (const select of selects) {
-        for (const employee in employees) {
-            const option = document.createElement(`option`);
-            //option.innerText = employee.name + ...;
-            document.select.appendChild(option);
-        }
-    }
-}
-
-/**
- * Updates drop-down list dataset.
- */
-function renderTaskList() {
-    const selects = document.querySelectorAll(`.select-task`);
-    for (const select of selects) {
-        for (const task in tasks) {
-            const option = document.createElement(`option`);
-            //option.innerText = task.name + ...;
-            document.select.appendChild(option);
-        }
-    }
-}
-
-/**
- * Renders a form in-place.
- * @param {Form} form
- */
-function renderForm(form) {
-    document.querySelector(`.form-container`).innerHTML = form;
-}
+setInterval(() => {
+    Renderer.renderEmployeeList();
+    Renderer.renderTaskList();
+}, Timing.UI_UPDATE_INTERVAL);
