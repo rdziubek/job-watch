@@ -40,12 +40,10 @@ function taskAdd(task) {
  * @param {number} employeeId Employee to be removed at the given index.
  */
 function employeeDelete(employeeId) {
-    // TODO:
-    //  logic behind the script:
-    //  Delete an employee in a select list:
-    //  form parameter passes that given employee into this scope from the <select> list
-    //  first destroy that given employee object instance, then destroy all its mentions in <select> list (although SetInterval can do that for us)
-    //  what about glue.js???
+
+    // TODO: Update rendered employee list.
+    // TODO: Remove all existing bindings {@see Binding} where the
+    //  deleted employee is present (identified by employee's id).
 }
 
 /**
@@ -53,8 +51,10 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
-    // TODO: logic behind the script:
-    //  Same as employeeDelete
+
+    // TODO: Update rendered task list.
+    // TODO: Remove all existing bindings {@see Binding} where the
+    //  deleted task is present (identified by task's id).
 }
 
 /**
@@ -64,8 +64,8 @@ function taskDelete(taskId) {
  * @param {string} employeeTaskRole Role fulfilled by the employee assigned.
  */
 function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
-    // TODO: get a task and an employee (both existing) from the form parameter
-    //  glue.js them together
+
+    // TODO: Create a binding object.
 }
 
 /**
@@ -74,8 +74,8 @@ function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
  * @param employeeId Employee's {@see Employee} id from which the task is to be retained.
  */
 function employeeTaskRetain(taskId, employeeId) {
-    // TODO: get a task and an employee (both existing) from the form parameter
-    //  destroy their glue.js link
+
+    // TODO: Remove a binding object (identified by a pair of task and employee ids).
 }
 
 /**
