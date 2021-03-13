@@ -11,6 +11,7 @@ class Renderer {
 
             // TODO:
             //  option.innerText = employee.name + ...;
+            //option.innerText = localStorage.getItem();
             select.appendChild(option);
         }
     }

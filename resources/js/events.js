@@ -19,6 +19,7 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
  */
 document.querySelector(`.button-employee-delete`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.DELETE);
+    Renderer.renderEmployeeList(employees);
 
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
@@ -30,14 +31,11 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
         //  we then get his selected option and pass it to main and:
         //    a) we pass his position in that select (option.value)
         //    b) we pass the option object and delete it in main
-
-        e.preventDefault();
     });
 
     document.querySelector(`.select-employee`).addEventListener(`click`, (e) => {
-        Renderer.renderEmployeeList();
-
-        e.preventDefault();
+        // TODO: this is unnecessary as it renders each time a form gets dynamically created
+        // Renderer.renderEmployeeList();
     });
 });
 
@@ -52,8 +50,6 @@ document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
             new Task(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.time-remaining`).value));
-
-        e.preventDefault();
     });
 });
 
@@ -62,20 +58,18 @@ document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
  */
 document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.TASK.DELETE);
+    Renderer.renderTaskList(tasks);
 
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
 
         taskDelete(Number(
             selectTask.options[selectTask.selectedIndex].value));
-
-        e.preventDefault();
     });
 
     document.querySelector(`.select-task`).addEventListener(`click`, (e) => {
-        Renderer.renderTaskList();
-
-        e.preventDefault();
+        // TODO: this is unnecessary as it renders each time a form gets dynamically created
+        // Renderer.renderTaskList();
     });
 });
 
@@ -84,6 +78,8 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
  */
 document.querySelector(`.button-employee-task-assign`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.ASSIGN);
+    Renderer.renderTaskList(tasks);
+    Renderer.renderEmployeeList(employees);
 
     document.querySelector(`.submit-employee-task-assign`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
@@ -93,19 +89,15 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
             Number(selectTask.options[selectTask.selectedIndex].value),
             Number(selectEmployee.options[selectEmployee.selectedIndex].value),
             document.querySelector(`.role`).value);
-
-        e.preventDefault();
     });
 
     document.querySelector(`.select-employee`).addEventListener(`click`, (e) => {
-        Renderer.renderEmployeeList();
-
-        e.preventDefault();
+        // TODO: this is unnecessary as it renders each time a form gets dynamically created
+        // Renderer.renderEmployeeList();
     });
     document.querySelector(`.select-task`).addEventListener(`click`, (e) => {
-        Renderer.renderTaskList();
-
-        e.preventDefault();
+        // TODO: this is unnecessary as it renders each time a form gets dynamically created
+        // Renderer.renderTaskList();
     });
 });
 
@@ -114,6 +106,8 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
  */
 document.querySelector(`.button-employee-task-retain`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.RETAIN);
+    Renderer.renderTaskList(tasks);
+    Renderer.renderEmployeeList(employees);
 
     document.querySelector(`.submit-employee-task-retain`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
@@ -122,18 +116,14 @@ document.querySelector(`.button-employee-task-retain`).addEventListener(`click`,
         employeeTaskRetain(
             selectTask.options[selectTask.selectedIndex].value,
             selectEmployee.options[selectEmployee.selectedIndex].value);
-
-        e.preventDefault();
     });
 
     document.querySelector(`.select-employee`).addEventListener(`click`, (e) => {
-        Renderer.renderEmployeeList();
-
-        e.preventDefault();
+        // TODO: this is unnecessary as it renders each time a form gets dynamically created
+        // Renderer.renderEmployeeList();
     });
     document.querySelector(`.select-task`).addEventListener(`click`, (e) => {
-        Renderer.renderTaskList();
-
-        e.preventDefault();
+        // TODO: this is unnecessary as it renders each time a form gets dynamically created
+        // Renderer.renderTaskList();
     });
 });

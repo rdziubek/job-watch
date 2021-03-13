@@ -1,4 +1,8 @@
 class Task {
+    /**
+     * @param name
+     * @param {number} timeRemaining Specified in whole hours.
+     */
     constructor(name, timeRemaining) {
         this._name = name;
         this._timeRemaining = timeRemaining;

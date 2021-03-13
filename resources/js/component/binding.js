@@ -1,4 +1,9 @@
 class Binding {
+    /**
+     * @param taskId
+     * @param employeeId
+     * @param {string} role Role fulfilled by the employee associated with the bond.
+     */
     constructor(taskId, employeeId, role) {
         this._taskId = taskId;
         this._employeeId = employeeId;

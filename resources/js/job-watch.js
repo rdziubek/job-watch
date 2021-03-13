@@ -130,6 +130,6 @@ function employeeTaskRetain(taskId, employeeId) {
  * Update UI state.
  */
 setInterval(() => {
-    Renderer.renderEmployeeList();
-    Renderer.renderTaskList();
+
+    // TODO: Show current application state here, i.e. every employee, task and bounds between them.
 }, Timing.UI_UPDATE_INTERVAL);
