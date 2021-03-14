@@ -9,6 +9,7 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
             new Employee(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.surname`).value));
+        e.preventDefault();
     });
 });
 
@@ -22,7 +23,8 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
 
-        employeeDelete(selectEmployee.selectedIndex);
+        employeeDelete(Number(selectEmployee.selectedIndex));
+        e.preventDefault();
     });
 });
 
@@ -37,6 +39,7 @@ document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
             new Task(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.time-remaining`).value));
+        e.preventDefault();
     });
 });
 
@@ -50,8 +53,8 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
 
-        taskDelete(Number(
-            selectTask.options[selectTask.selectedIndex]));
+        taskDelete(Number(selectTask.selectedIndex));
+        e.preventDefault();
     });
 });
 
@@ -88,7 +91,8 @@ document.querySelector(`.button-employee-task-retain`).addEventListener(`click`,
         const selectEmployee = document.querySelector(`.select-employee`);
 
         employeeTaskRetain(
-            selectTask.options[selectTask.selectedIndex],
-            selectEmployee.options[selectEmployee.selectedIndex]);
+            Number(selectTask.selectedIndex),
+            Number(selectEmployee.selectedIndex));
+        e.preventDefault();
     });
 });

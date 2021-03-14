@@ -31,25 +31,30 @@ function taskAdd(task) {
 function employeeDelete(employeeId) {
     /**
      * Remove instance.
-     * NOTE: Employee removed by inserting a `null` value so that other references remain untouched
-     *  (new instances always put on top of a stack).
      */
-    employees[employeeId] = null;
+    employees.splice(employeeId, 1);
     PersistentManager.updateStorage(Key.EMPLOYEE, employees);
 
 
     /**
      * Remove related bindings.
      *
-     * NOTE: Binding removed by inserting a `null` value so that other references remain untouched
-     *  (new instances always put on top of a stack).
+     * NOTE: Offset any indexes affected by the splicing in another, separate loop.
+     *  Doing it in one loop is problematic due to the binding length changing and stuff.
      */
-    for (let i of bindings.keys()) {
-        if (employeeId === bindings[i].employeeId) {
-            bindings[i] = null;
+    for (let i = 0; i < bindings.length; i++) {
+        if (employeeId === bindings[i]._employeeId) {
+            if (i < bindings.length) bindings.splice(i, 1);
         }
     }
+    for (let i = 0; i < bindings.length; i++) {
+        if (employeeId < bindings[i]._employeeId) bindings[i]._employeeId -= 1;
+    }
+
     PersistentManager.updateStorage(Key.BINDING, bindings);
+
+    // Reload the page to update the select lists
+    location.reload();
 }
 
 /**
@@ -60,21 +65,28 @@ function taskDelete(taskId) {
     /**
      * Remove instance.
      */
-    tasks[taskId] = null;
+    tasks.splice(taskId, 1);
     PersistentManager.updateStorage(Key.TASK, tasks);
 
     /**
      * Remove related bindings.
      *
-     * NOTE: Task removed by inserting a `null` value so that other references remain untouched
-     *  (new instances always put on top of a stack).
+     * NOTE: Offset any indexes affected by the splicing in another, separate loop.
+     *  Doing it in one loop is problematic due to the binding length changing and stuff.
      */
-    for (let i of bindings.keys()) {
-        if (taskId === bindings[i].taskId) {
-            bindings[i] = null;
+    for (let i = 0; i < bindings.length; i++) {
+        if (taskId === bindings[i]._taskId) {
+            if (i < bindings.length) bindings.splice(i, 1);
         }
     }
+    for (let i = 0; i < bindings.length; i++) {
+        if (taskId < bindings[i]._taskId) bindings[i]._taskId -= 1;
+    }
+
     PersistentManager.updateStorage(Key.BINDING, bindings);
+
+    // Reload the page to update the select lists
+    location.reload();
 }
 
 /**
@@ -95,17 +107,12 @@ function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
  * @param employeeId Employee's {@see Employee} id from which the task is to be retained.
  */
 function employeeTaskRetain(taskId, employeeId) {
-    /**
-     * NOTE: Binding removed by inserting a `null` value so that other references remain untouched
-     *  (new instances always put on top of a stack).
-     */
     for (let i of bindings.keys()) {
-        if (employeeId === bindings[i].employeeId &&
-            taskId === bindings[i].taskId) {
-            bindings[i] = null;
+        if (employeeId === bindings[i]._employeeId &&
+            taskId === bindings[i]._taskId) {
+            bindings.splice(i, 1);
         }
     }
-
     PersistentManager.updateStorage(Key.BINDING, bindings);
 }
 
