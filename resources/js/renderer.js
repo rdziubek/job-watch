@@ -14,9 +14,6 @@ class Renderer {
         employees.map(employee => {
             const option = document.createElement(`option`);
 
-            option.value = Index.EMPLOYEE;
-            Index.EMPLOYEE++;
-
             if (employee === null) {
                 option.style.display = `none`;
             } else {
@@ -40,9 +37,6 @@ class Renderer {
 
         tasks.map(task => {
             const option = document.createElement(`option`);
-
-            option.value = Index.TASK;
-            Index.TASK++;
 
             if (task === null) {
                 option.style.display = `none`;

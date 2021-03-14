@@ -1,8 +1,8 @@
 `use strict`;
 
-var employees = []
-var tasks = []
-var bindings = []
+const employees = []
+const tasks = []
+const bindings = []
 
 /**
  * Adds an employee.
@@ -31,8 +31,6 @@ function taskAdd(task) {
 function employeeDelete(employeeId) {
     /**
      * Remove instance.
-     * NOTE: Employee removed by inserting a `null` value so that other references remain untouched
-     *  (new instances always put on top of a stack).
      */
     employees.splice(employeeId, 1);
     PersistentManager.updateStorage(Key.EMPLOYEE, employees);
@@ -40,21 +38,22 @@ function employeeDelete(employeeId) {
 
     /**
      * Remove related bindings.
-     * Then offset any indexes affected by the splicing in another, separate loop.
-     * Doing it in one loop is problematic due to the binding length changing and stuff.
+     *
+     * NOTE: Offset any indexes affected by the splicing in another, separate loop.
+     *  Doing it in one loop is problematic due to the binding length changing and stuff.
      */
-    for (let i=0; i < bindings.length; i++){
+    for (let i = 0; i < bindings.length; i++) {
         if (employeeId === bindings[i]._employeeId) {
             if (i < bindings.length) bindings.splice(i, 1);
         }
     }
-    for (let i=0; i < bindings.length; i++){
-        if (employeeId < bindings[i]._employeeId) bindings[i]._employeeId-=1;
+    for (let i = 0; i < bindings.length; i++) {
+        if (employeeId < bindings[i]._employeeId) bindings[i]._employeeId -= 1;
     }
 
     PersistentManager.updateStorage(Key.BINDING, bindings);
 
-    //Reload the page to update the select lists
+    // Reload the page to update the select lists
     location.reload();
 }
 
@@ -71,21 +70,22 @@ function taskDelete(taskId) {
 
     /**
      * Remove related bindings.
-     * Then offset any indexes affected by the splicing in another, separate loop.
-     * Doing it in one loop is problematic due to the binding length changing and stuff.
+     *
+     * NOTE: Offset any indexes affected by the splicing in another, separate loop.
+     *  Doing it in one loop is problematic due to the binding length changing and stuff.
      */
-    for (let i=0; i < bindings.length; i++){
+    for (let i = 0; i < bindings.length; i++) {
         if (taskId === bindings[i]._taskId) {
             if (i < bindings.length) bindings.splice(i, 1);
         }
     }
-    for (let i=0; i < bindings.length; i++){
-        if (taskId < bindings[i]._taskId) bindings[i]._taskId-=1;
+    for (let i = 0; i < bindings.length; i++) {
+        if (taskId < bindings[i]._taskId) bindings[i]._taskId -= 1;
     }
 
     PersistentManager.updateStorage(Key.BINDING, bindings);
 
-    //Reload the page to update the select lists
+    // Reload the page to update the select lists
     location.reload();
 }
 
@@ -107,11 +107,6 @@ function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
  * @param employeeId Employee's {@see Employee} id from which the task is to be retained.
  */
 function employeeTaskRetain(taskId, employeeId) {
-    console.log(taskId, employeeId);
-    /**
-     * NOTE: Binding removed by inserting a `null` value so that other references remain untouched
-     *  (new instances always put on top of a stack).
-     */
     for (let i of bindings.keys()) {
         if (employeeId === bindings[i]._employeeId &&
             taskId === bindings[i]._taskId) {

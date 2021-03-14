@@ -9,7 +9,7 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
             new Employee(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.surname`).value));
-            e.preventDefault();
+        e.preventDefault();
     });
 });
 
@@ -39,7 +39,7 @@ document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
             new Task(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.time-remaining`).value));
-            e.preventDefault();
+        e.preventDefault();
     });
 });
 
@@ -69,8 +69,6 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
     document.querySelector(`.submit-employee-task-assign`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
         const selectEmployee = document.querySelector(`.select-employee`);
-        let selectEmployeeName = selectEmployee.value;
-        let selectTaskName = selectTask.value;
 
         employeeTaskAssign(
             Number(selectTask.selectedIndex),
