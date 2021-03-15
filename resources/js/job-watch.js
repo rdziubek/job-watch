@@ -62,7 +62,7 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
-    let aboutToBeDeleted = `testing`;
+    let aboutToBeDeleted = ``;
     for (let i = 0; i < bindings.length; i++) {
         if (taskId === bindings[i]._taskId) {
             if (i < bindings.length) {
@@ -74,7 +74,7 @@ function taskDelete(taskId) {
         }
     }
 
-    if (confirm(`Czy kontynuować?\nUsunięte zostaną istniejące powiązania pracowników:\n\n${aboutToBeDeleted}`)) {
+    if (confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`)) {
         /**
          * Remove instance.
          */
