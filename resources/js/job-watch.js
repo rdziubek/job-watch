@@ -62,43 +62,50 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
-    const aboutToBeDeleted = ``;
+    let aboutToBeDeleted = ``;
+    console.log(...bindings);
     for (let i = 0; i < bindings.length; i++) {
         if (taskId === bindings[i]._taskId) {
-            const currentRow = ``;
             if (i < bindings.length) {
-                currentRow.concat(`${employees[bindings[i]._employeeId]} z rolą ${tasks[bindings[i]._role]}\n`);
+                console.log('found', `${
+                    employees[bindings[i]._employeeId]._name} ${
+                    employees[bindings[i]._employeeId]._surname} z rolą ${
+                    bindings[i]._role}\n`);
+                aboutToBeDeleted.concat(`${
+                    employees[bindings[i]._employeeId]._name} ${
+                    employees[bindings[i]._employeeId]._surname} z rolą ${
+                    bindings[i]._role}\n`);
             }
         }
     }
 
-    confirm(`Czy kontynuować? Usunięte zostaną istniejące powiązania pracowników: ${aboutToBeDeleted}`);
+    if (confirm(`Czy kontynuować?\nUsunięte zostaną istniejące powiązania pracowników:\n${aboutToBeDeleted}`)) {
+        /**
+         * Remove instance.
+         */
+        tasks.splice(taskId, 1);
+        PersistentManager.updateStorage(Key.TASK, tasks);
 
-    /**
-     * Remove instance.
-     */
-    tasks.splice(taskId, 1);
-    PersistentManager.updateStorage(Key.TASK, tasks);
-
-    /**
-     * Remove related bindings.
-     *
-     * NOTE: Offset any indexes affected by the splicing in another, separate loop.
-     *  Doing it in one loop is problematic due to the binding length changing and stuff.
-     */
-    for (let i = 0; i < bindings.length; i++) {
-        if (taskId === bindings[i]._taskId) {
-            if (i < bindings.length) bindings.splice(i, 1);
+        /**
+         * Remove related bindings.
+         *
+         * NOTE: Offset any indexes affected by the splicing in another, separate loop.
+         *  Doing it in one loop is problematic due to the binding length changing and stuff.
+         */
+        for (let i = 0; i < bindings.length; i++) {
+            if (taskId === bindings[i]._taskId) {
+                if (i < bindings.length) bindings.splice(i, 1);
+            }
         }
-    }
-    for (let i = 0; i < bindings.length; i++) {
-        if (taskId < bindings[i]._taskId) bindings[i]._taskId -= 1;
-    }
+        for (let i = 0; i < bindings.length; i++) {
+            if (taskId < bindings[i]._taskId) bindings[i]._taskId -= 1;
+        }
 
-    PersistentManager.updateStorage(Key.BINDING, bindings);
+        PersistentManager.updateStorage(Key.BINDING, bindings);
 
-    // Reload the page to update the select lists
-    location.reload();
+        // Reload the page to update the select lists
+        location.reload();
+    }
 }
 
 /**

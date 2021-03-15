@@ -14,23 +14,11 @@ class Binding {
         return this._taskId;
     }
 
-    set taskId(value) {
-        this._taskId = value;
-    }
-
     get employeeId() {
         return this._employeeId;
     }
 
-    set employeeId(value) {
-        this._employeeId = value;
-    }
-
     get role() {
         return this._role;
-    }
-
-    set role(value) {
-        this._role = value;
     }
 }

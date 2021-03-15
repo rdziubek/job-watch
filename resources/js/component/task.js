@@ -1,26 +1,28 @@
 class Task {
     /**
      * @param {string} name Task description.
-     * @param {number} timeRemaining Specified in whole hours.
+     * @param {number} timeAllocated Specified in whole hours.
      */
-    constructor(name, timeRemaining) {
+    constructor(name, timeAllocated) {
         this._name = name;
-        this._timeRemaining = timeRemaining;
+        this._timeAllocated = timeAllocated;
+        this._addedAt = Date.now();
+        this._pastDue = new Date.now().setHours(new Date.now().getHours + timeAllocated);
     }
 
     get name() {
         return this._name;
     }
 
-    set name(value) {
-        this._name = value;
+    get timeAllocated() {
+        return this._timeAllocated;
     }
 
-    get timeRemaining() {
-        return this._timeRemaining;
+    get addedAt() {
+        return this._addedAt;
     }
 
-    set timeRemaining(value) {
-        this._timeRemaining = value;
+    get pastDue() {
+        return this._pastDue;
     }
 }
