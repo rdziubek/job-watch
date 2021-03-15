@@ -14,12 +14,7 @@ class Renderer {
         employees.map(employee => {
             const option = document.createElement(`option`);
 
-            if (employee === null) {
-                option.style.display = `none`;
-            } else {
-                option.innerText = `${employee._name} ${employee._surname}`;
-            }
-
+            option.innerText = `${employee._name} ${employee._surname}`;
             select.appendChild(option);
         });
     }
@@ -38,12 +33,7 @@ class Renderer {
         tasks.map(task => {
             const option = document.createElement(`option`);
 
-            if (task === null) {
-                option.style.display = `none`;
-            } else {
-                option.innerText = task._name;
-            }
-
+            option.innerText = task._name;
             select.appendChild(option);
         });
     }
@@ -69,21 +59,18 @@ class Renderer {
         this.clearBuffer(employeeContainer, taskContainer, bindingContainer);
 
         employees.map(employee =>
-            employee !== null ?
-                employeeContainer.appendChild(
-                    this.formEntity(`${employee._name} ${employee._surname}`)) : null);
+            employeeContainer.appendChild(
+                this.formEntity(`${employee._name} ${employee._surname}`)));
         tasks.map(task =>
-            task !== null ?
-                taskContainer.appendChild(
-                    this.formEntity(`${task._name} ${task._timeRemaining}`)) : null);
+            taskContainer.appendChild(
+                this.formEntity(`${task._name} ${task._timeRemaining}`)));
         bindings.map(binding =>
-            binding !== null && employees[binding._employeeId] !== null && tasks[binding._taskId] !== null ?
-                bindingContainer.appendChild(
-                    this.formEntity(`${
-                        employees[binding._employeeId]._name} ${
-                        tasks[binding._taskId]._name} ${
-                        binding._role} ${
-                        tasks[binding._taskId]._timeRemaining} h`)) : null);
+            bindingContainer.appendChild(
+                this.formEntity(`${
+                    employees[binding._employeeId]._name} ${
+                    tasks[binding._taskId]._name} ${
+                    binding._role} ${
+                    tasks[binding._taskId]._timeRemaining} h`)));
     }
 
     /**

@@ -3,6 +3,7 @@
  */
 document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.ADD);
+    Renderer.renderEntities();
 
     document.querySelector(`.submit-employee-add`).addEventListener(`click`, (e) => {
         employeeAdd(
@@ -19,6 +20,7 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
 document.querySelector(`.button-employee-delete`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.DELETE);
     Renderer.renderEmployeeList(employees);
+    Renderer.renderEntities();
 
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
@@ -33,6 +35,7 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
  */
 document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.TASK.ADD);
+    Renderer.renderEntities();
 
     document.querySelector(`.submit-task-add`).addEventListener(`click`, (e) => {
         taskAdd(
@@ -49,6 +52,7 @@ document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
 document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.TASK.DELETE);
     Renderer.renderTaskList(tasks);
+    Renderer.renderEntities();
 
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
@@ -65,6 +69,7 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
     Renderer.renderForm(Form.ASSIGN);
     Renderer.renderTaskList(tasks);
     Renderer.renderEmployeeList(employees);
+    Renderer.renderEntities();
 
     document.querySelector(`.submit-employee-task-assign`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
@@ -85,6 +90,7 @@ document.querySelector(`.button-employee-task-retain`).addEventListener(`click`,
     Renderer.renderForm(Form.RETAIN);
     Renderer.renderTaskList(tasks);
     Renderer.renderEmployeeList(employees);
+    Renderer.renderEntities();
 
     document.querySelector(`.submit-employee-task-retain`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
