@@ -60,21 +60,28 @@ class Renderer {
 
         employees.map(employee =>
             employeeContainer.appendChild(
-                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`, Tag.ENTITY)));
+                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
 
         tasks.map(task => {
-            taskContainer.appendChild(
-                this.formEntity(
-                    `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
-                    ${this.formTaskProgressBar(task)}`, Tag.ENTITY))
+            /*
+             *  Don't ask me what progressPercent is :-)
+             *  It just works
+             */
+            let progressPercent = 0;
+            let entity = this.formEntity(`Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
+            <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`);
+            taskContainer.appendChild(entity);
+            setInterval(() => {
+                progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
+                entity.querySelector(`.result-block progress`).value = progressPercent;
+            }, 1000);
         });
         bindings.map(binding =>
             bindingContainer.appendChild(
-                this.formEntity(
-                    `Pracownik: ${employees[binding._employeeId]._name}
-                    ${employees[binding._employeeId]._surname}<br>
-                    Zadanie: ${tasks[binding._taskId]._name}<br>
-                    Rola: ${binding._role}`, Tag.ENTITY)));
+                this.formEntity(`Pracownik: ${employees[binding._employeeId]._name}
+                ${employees[binding._employeeId]._surname}<br>
+                Zadanie: ${tasks[binding._taskId]._name}<br>
+                Rola: ${binding._role}`)));
     }
 
     /**
@@ -86,36 +93,12 @@ class Renderer {
     }
 
     /**
-     * Generates a progress bar.
-     * @param {Task} task From which the progress bar is to be updated.
-     * @return {Node}
-     */
-    static formTaskProgressBar(task) {
-        let calculatePercent = () => (Math.abs(
-            Date.now() - task._addedAt) /
-            (task._pastDue - task._addedAt)) * 100;
-
-        /*
-         *  Dispatch a time handler in every created scope so as not to find the elements manually.
-         */
-        let progressPercent = calculatePercent();
-        setInterval(() => {
-            progressPercent = calculatePercent();
-        }, Timing.UI_UPDATE_INTERVAL);
-
-        return this.formEntity(
-            `<progress max="100" value="${progressPercent}">${progressPercent}%</progress>`,
-            Tag.PROGRESS);
-    }
-
-    /**
      * Creates entity element to be rendered.
      * @param content Content of the created node.
-     * @param tagName Name of the container tag created.
-     * @returns {Node}
+     * @returns {Element}
      */
-    static formEntity(content, tagName) {
-        const template = document.createElement(tagName);
+    static formEntity(content) {
+        const template = document.createElement(`entity`);
 
         template.innerHTML = `<div class="result-block">${content}</div>`;
 
