@@ -1,6 +1,10 @@
 /**
  * Add-employee handler.
  */
+document.addEventListener(`DOMContentLoaded`, () => {
+    Renderer.renderEntities();
+});
+
 document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.ADD);
     Renderer.renderEntities();
