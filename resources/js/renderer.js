@@ -67,14 +67,15 @@ class Renderer {
              *  Don't ask me what progressPercent is :-)
              *  It just works
              */
-            let progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
-            taskContainer.appendChild(
-                this.formEntity(
-                    `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
-                    <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`
-                ))
+            let progressPercent = 0;
+            let entity = this.formEntity(
+                `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
+                <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`
+            );
+            taskContainer.appendChild(entity);
             setInterval(()=>{
-
+                progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
+                entity.querySelector(`.result-block`).querySelector(`progress`).value = progressPercent;
             }, 1000);
         });
         /** TODO: Each time a task is rendered in an entity, render a progressbar (a.k.a. here)
