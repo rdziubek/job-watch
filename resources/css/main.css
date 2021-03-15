@@ -14,7 +14,9 @@
 }
 
 body {
-    background-color: var(--color-grey);
+    background-image: url(../images/symphony.png);
+    background-image: url(../images/symphony.png), linear-gradient(90deg, rgba(231,230,255,1) 0%, rgba(252,225,255,1) 30%, rgba(111,0,255,1) 100%);
+    background-repeat:repeat;
 }
 
 /* Container elements */

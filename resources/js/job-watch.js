@@ -62,8 +62,6 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
-    confirm(`Do you really want to proceed?`);
-
     /**
      * Remove instance.
      */

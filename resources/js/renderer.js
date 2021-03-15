@@ -63,13 +63,13 @@ class Renderer {
                 this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
         tasks.map(task =>
             taskContainer.appendChild(
-                this.formEntity(`Zadanie: ${task._name}\nCzas: ${task._timeRemaining}h`)));
+                this.formEntity(`Zadanie: ${task._name}<br>Czas: ${task._timeRemaining}h`)));
         bindings.map(binding =>
             bindingContainer.appendChild(
                 this.formEntity(
                     `Pracownik: ${employees[binding._employeeId]._name}
-                    ${employees[binding._employeeId]._surname}\n
-                    Zadanie: ${tasks[binding._taskId]._name}\n
+                    ${employees[binding._employeeId]._surname}<br>
+                    Zadanie: ${tasks[binding._taskId]._name}<br>
                     Rola: ${binding._role}`)));
     }
 
