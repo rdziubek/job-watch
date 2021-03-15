@@ -61,45 +61,27 @@ class Renderer {
         employees.map(employee =>
             employeeContainer.appendChild(
                 this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
-        
+
         tasks.map(task => {
             /*
              *  Don't ask me what progressPercent is :-)
              *  It just works
              */
             let progressPercent = 0;
-            let entity = this.formEntity(
-                `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
-                <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`
-            );
+            let entity = this.formEntity(`Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
+            <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`);
             taskContainer.appendChild(entity);
-            setInterval(()=>{
+            setInterval(() => {
                 progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
-                entity.querySelector(`.result-block`).querySelector(`progress`).value = progressPercent;
+                entity.querySelector(`.result-block progress`).value = progressPercent;
             }, 1000);
         });
-        /** TODO: Each time a task is rendered in an entity, render a progressbar (a.k.a. here)
-         *   The task should store target datetime (task._pastDue), then on each render it counts:
-         *   task._pastDue - Date.now() = taskTimeRemaining
-         *   A progressbar then renders itself at a ratio of [(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)] inside
-         */
         bindings.map(binding =>
             bindingContainer.appendChild(
-                this.formEntity(
-                    `Pracownik: ${employees[binding._employeeId]._name}
-                    ${employees[binding._employeeId]._surname}<br>
-                    Zadanie: ${tasks[binding._taskId]._name}<br>
-                    Rola: ${binding._role}`)));
-    }
-
-    /**
-     * Renders total employee-task bindings status.
-     */
-    static renderProgressBar() {
-        // TODO: Store the progressBar in each task's <entity> and not in .progress-container
-        // const employeeContainer = document.querySelector(`.progress-container`);
-
-
+                this.formEntity(`Pracownik: ${employees[binding._employeeId]._name}
+                ${employees[binding._employeeId]._surname}<br>
+                Zadanie: ${tasks[binding._taskId]._name}<br>
+                Rola: ${binding._role}`)));
     }
 
     /**
@@ -113,7 +95,7 @@ class Renderer {
     /**
      * Creates entity element to be rendered.
      * @param content Content of the created node.
-     * @returns {Node}
+     * @returns {Element}
      */
     static formEntity(content) {
         const template = document.createElement(`entity`);
