@@ -62,6 +62,18 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
+    const aboutToBeDeleted = ``;
+    for (let i = 0; i < bindings.length; i++) {
+        if (taskId === bindings[i]._taskId) {
+            const currentRow = ``;
+            if (i < bindings.length) {
+                currentRow.concat(`${employees[bindings[i]._employeeId]} z rolą ${tasks[bindings[i]._role]}\n`);
+            }
+        }
+    }
+
+    confirm(`Czy kontynuować? Usunięte zostaną istniejące powiązania pracowników: ${aboutToBeDeleted}`);
+
     /**
      * Remove instance.
      */
