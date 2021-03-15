@@ -120,5 +120,5 @@ function employeeTaskRetain(taskId, employeeId) {
  * Update UI state.
  */
 setInterval(() => {
-    //Renderer.renderEntities();
+
 }, Timing.UI_UPDATE_INTERVAL);

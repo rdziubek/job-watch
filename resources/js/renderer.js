@@ -60,17 +60,17 @@ class Renderer {
 
         employees.map(employee =>
             employeeContainer.appendChild(
-                this.formEntity(`${employee._name} ${employee._surname}`)));
+                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
         tasks.map(task =>
             taskContainer.appendChild(
-                this.formEntity(`${task._name} ${task._timeRemaining}`)));
+                this.formEntity(`Zadanie: ${task._name} Czas: ${task._timeRemaining}h`)));
         bindings.map(binding =>
             bindingContainer.appendChild(
                 this.formEntity(`${
                     employees[binding._employeeId]._name} ${
-                    tasks[binding._taskId]._name} ${
-                    binding._role} ${
-                    tasks[binding._taskId]._timeRemaining} h`)));
+                    employees[binding._employeeId]._surname} - ${
+                    tasks[binding._taskId]._name}. Rola: ${
+                    binding._role}`)));
     }
 
     /**
