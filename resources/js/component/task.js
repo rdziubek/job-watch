@@ -4,10 +4,11 @@ class Task {
      * @param {Date} timeAllocated Specified in whole hours.
      */
     constructor(name, timeAllocated) {
+        let now = new Date();
         this._name = name;
         this._timeAllocated = timeAllocated;
         this._addedAt = Date.now();
-        this._pastDue = new Date().setHours(new Date().getHours() + timeAllocated);
+        this._pastDue = now.setHours(now.getHours() + timeAllocated);
     }
 
     get name() {
