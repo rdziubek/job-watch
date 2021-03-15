@@ -67,8 +67,8 @@ class Renderer {
             console.log(progressPercent);
             console.log(Math.abs(Date.now() - task._addedAt));
             console.log(task._pastDue - task._addedAt);
-            console.log(new Date(task._pastDue));
-            console.log(new Date(task._addedAt));
+            console.log(task._pastDue);
+            console.log(task._addedAt);
             taskContainer.appendChild(
                 this.formEntity(
                     `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated}h
