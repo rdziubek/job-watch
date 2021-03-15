@@ -85,6 +85,8 @@ h2::after{
 
 .result-block{
     display: block;
+    border: 0.05rem solid var(--color-eggplant);
+    width: 20rem;
     padding: 2em;
     margin: 1em auto;
     background-color: var(--color-banana);

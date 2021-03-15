@@ -25,7 +25,6 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
     Renderer.renderForm(Form.EMPLOYEE.DELETE);
     Renderer.renderEmployeeList(employees);
 
-
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
 
@@ -61,7 +60,6 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
 
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
-
 
         taskDelete(Number(selectTask.selectedIndex));
         Renderer.renderEntities();
