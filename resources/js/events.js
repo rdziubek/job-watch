@@ -7,13 +7,14 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
 document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.ADD);
-    Renderer.renderEntities();
+
 
     document.querySelector(`.submit-employee-add`).addEventListener(`click`, (e) => {
         employeeAdd(
             new Employee(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.surname`).value));
+        Renderer.renderEntities();
         e.preventDefault();
     });
 });
@@ -24,12 +25,13 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
 document.querySelector(`.button-employee-delete`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.DELETE);
     Renderer.renderEmployeeList(employees);
-    Renderer.renderEntities();
+
 
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
 
         employeeDelete(Number(selectEmployee.selectedIndex));
+        Renderer.renderEntities();
         e.preventDefault();
     });
 });
@@ -39,13 +41,14 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
  */
 document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.TASK.ADD);
-    Renderer.renderEntities();
+
 
     document.querySelector(`.submit-task-add`).addEventListener(`click`, (e) => {
         taskAdd(
             new Task(
                 document.querySelector(`.name`).value,
                 document.querySelector(`.time-remaining`).value));
+        Renderer.renderEntities();
         e.preventDefault();
     });
 });
@@ -62,6 +65,7 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
         const selectTask = document.querySelector(`.select-task`);
 
         taskDelete(Number(selectTask.selectedIndex));
+        Renderer.renderEntities();
         e.preventDefault();
     });
 });
@@ -83,6 +87,7 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
             Number(selectTask.selectedIndex),
             Number(selectEmployee.selectedIndex),
             document.querySelector(`.role`).value);
+        Renderer.renderEntities();
         e.preventDefault();
     });
 });
@@ -103,6 +108,7 @@ document.querySelector(`.button-employee-task-retain`).addEventListener(`click`,
         employeeTaskRetain(
             Number(selectTask.selectedIndex),
             Number(selectEmployee.selectedIndex));
+        Renderer.renderEntities();
         e.preventDefault();
     });
 });
