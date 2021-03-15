@@ -74,6 +74,8 @@ function taskDelete(taskId) {
         }
     }
 
+    const deleteConfirmation = confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`);
+
     if (confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`)) {
         /**
          * Remove instance.
