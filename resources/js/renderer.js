@@ -68,6 +68,12 @@ class Renderer {
              *  It just works
              */
             let progressPercent = 0;
+            let time = 0;
+            if (task._timeAllocated / (60 * 60 * 1000) > 1) {
+                time = `${task._timeAllocated / (60 * 60 * 1000)} h`;
+            } else {
+                time = `${task._timeAllocated / (60 * 60 * 60 * 1000)} min`;
+            }
             let entity = this.formEntity(`Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h<br>
             <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`);
             taskContainer.appendChild(entity);
