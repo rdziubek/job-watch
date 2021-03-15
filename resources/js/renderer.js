@@ -60,8 +60,8 @@ class Renderer {
 
         employees.map(employee =>
             employeeContainer.appendChild(
-                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
-        
+                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`), Tag.ENTITY));
+
         tasks.map(task => {
             /*
              *  Don't ask me what progressPercent is :-)
@@ -71,34 +71,15 @@ class Renderer {
             taskContainer.appendChild(
                 this.formEntity(
                     `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
-                    <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`
-                ))
-            setInterval(()=>{
-
-            }, 1000);
+                    ${this.formProgressBar(progressPercent)}`, Tag.ENTITY))
         });
-        /** TODO: Each time a task is rendered in an entity, render a progressbar (a.k.a. here)
-         *   The task should store target datetime (task._pastDue), then on each render it counts:
-         *   task._pastDue - Date.now() = taskTimeRemaining
-         *   A progressbar then renders itself at a ratio of [(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)] inside
-         */
         bindings.map(binding =>
             bindingContainer.appendChild(
                 this.formEntity(
                     `Pracownik: ${employees[binding._employeeId]._name}
                     ${employees[binding._employeeId]._surname}<br>
                     Zadanie: ${tasks[binding._taskId]._name}<br>
-                    Rola: ${binding._role}`)));
-    }
-
-    /**
-     * Renders total employee-task bindings status.
-     */
-    static renderProgressBar() {
-        // TODO: Store the progressBar in each task's <entity> and not in .progress-container
-        // const employeeContainer = document.querySelector(`.progress-container`);
-
-
+                    Rola: ${binding._role}`, Tag.ENTITY)));
     }
 
     /**
@@ -110,12 +91,23 @@ class Renderer {
     }
 
     /**
+     * Generates a progress bar.
+     * @param {number} value Percentage <0, 100>
+     * @return {Node}
+     */
+    static formProgressBar(value) {
+        return this.formEntity(`<progress max="100" value="${value}">${value}%</progress>`,
+            Tag.PROGRESS);
+    }
+
+    /**
      * Creates entity element to be rendered.
      * @param content Content of the created node.
+     * @param tagName Name of the container tag created.
      * @returns {Node}
      */
-    static formEntity(content) {
-        const template = document.createElement(`entity`);
+    static formEntity(content, tagName) {
+        const template = document.createElement(tagName);
 
         template.innerHTML = `<div class="result-block">${content}</div>`;
 
