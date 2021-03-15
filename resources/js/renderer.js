@@ -75,7 +75,7 @@ class Renderer {
                 time = `${task._timeAllocated / (60 * 1000)} min`;
             }
 
-            let entity = this.formEntity(`Zadanie: ${task._name}<br>Czas: ${time}<br>
+            let entity = this.formEntity(`Zadanie: ${task._name}<br>Maksymalny czas: ${time}<br>
             <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`);
             taskContainer.appendChild(entity);
             setInterval(() => {
