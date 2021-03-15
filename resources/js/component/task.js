@@ -1,11 +1,11 @@
 class Task {
     /**
      * @param {string} name Task description.
-     * @param {number} timeAllocated Specified in whole hours.
+     * @param {Date} timeAllocated Specified in whole hours.
      */
     constructor(name, timeAllocated) {
         this._name = name;
-        this._timeAllocated = timeAllocated;
+        this._timeAllocated = new Date().setHours(timeAllocated);
         this._addedAt = Date.now();
         this._pastDue = new Date().setHours(new Date().getHours() + timeAllocated);
     }

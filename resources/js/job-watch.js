@@ -63,14 +63,9 @@ function employeeDelete(employeeId) {
  */
 function taskDelete(taskId) {
     let aboutToBeDeleted = `testing`;
-    console.log(...bindings);
     for (let i = 0; i < bindings.length; i++) {
         if (taskId === bindings[i]._taskId) {
             if (i < bindings.length) {
-                console.log('found', `${
-                    employees[bindings[i]._employeeId]._name} ${
-                    employees[bindings[i]._employeeId]._surname} z rolą ${
-                    bindings[i]._role}\n`);
                 aboutToBeDeleted = aboutToBeDeleted.concat(`${
                     employees[bindings[i]._employeeId]._name} ${
                     employees[bindings[i]._employeeId]._surname} z rolą ${
@@ -79,7 +74,7 @@ function taskDelete(taskId) {
         }
     }
 
-    if (confirm(`Czy kontynuować?\nUsunięte zostaną istniejące powiązania pracowników:\n${aboutToBeDeleted}`)) {
+    if (confirm(`Czy kontynuować?\nUsunięte zostaną istniejące powiązania pracowników:\n\n${aboutToBeDeleted}`)) {
         /**
          * Remove instance.
          */
