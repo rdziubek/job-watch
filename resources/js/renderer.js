@@ -64,14 +64,9 @@ class Renderer {
         
         tasks.map(task => {
             let progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
-            console.log(progressPercent);
-            console.log(Math.abs(Date.now() - task._addedAt));
-            console.log(task._pastDue - task._addedAt);
-            console.log(task._pastDue);
-            console.log(task._addedAt);
             taskContainer.appendChild(
                 this.formEntity(
-                    `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated}h
+                    `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
                     <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`
                 ))
         });
