@@ -4,7 +4,7 @@ class Task {
      * @param {Date} timeAllocated Specified in whole hours.
      */
     constructor(name, timeAllocated) {
-        let now = new Date();
+        let now = Date.now();
         this._name = name;
         this._timeAllocated = timeAllocated;
         this._addedAt = Date.now();
