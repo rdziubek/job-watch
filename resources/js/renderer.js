@@ -60,18 +60,13 @@ class Renderer {
 
         employees.map(employee =>
             employeeContainer.appendChild(
-                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`), Tag.ENTITY));
+                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`, Tag.ENTITY)));
 
         tasks.map(task => {
-            /*
-             *  Don't ask me what progressPercent is :-)
-             *  It just works
-             */
-            let progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
             taskContainer.appendChild(
                 this.formEntity(
                     `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
-                    ${this.formProgressBar(progressPercent)}`, Tag.ENTITY))
+                    ${this.formTaskProgressBar(task)}`, Tag.ENTITY))
         });
         bindings.map(binding =>
             bindingContainer.appendChild(
@@ -92,11 +87,24 @@ class Renderer {
 
     /**
      * Generates a progress bar.
-     * @param {number} value Percentage <0, 100>
+     * @param {Task} task From which the progress bar is to be updated.
      * @return {Node}
      */
-    static formProgressBar(value) {
-        return this.formEntity(`<progress max="100" value="${value}">${value}%</progress>`,
+    static formTaskProgressBar(task) {
+        let calculatePercent = () => (Math.abs(
+            Date.now() - task._addedAt) /
+            (task._pastDue - task._addedAt)) * 100;
+
+        /*
+         *  Dispatch a time handler in every created scope so as not to find the elements manually.
+         */
+        let progressPercent = calculatePercent();
+        setInterval(() => {
+            progressPercent = calculatePercent();
+        }, Timing.UI_UPDATE_INTERVAL);
+
+        return this.formEntity(
+            `<progress max="100" value="${progressPercent}">${progressPercent}%</progress>`,
             Tag.PROGRESS);
     }
 
