@@ -62,6 +62,11 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
+
+    /**
+     * Verify deleted objects.
+     * TODO: Factor this out of here
+     */
     let aboutToBeDeleted = ``;
     for (let i = 0; i < bindings.length; i++) {
         if (taskId === bindings[i]._taskId) {
