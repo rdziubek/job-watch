@@ -71,7 +71,7 @@ function taskDelete(taskId) {
                     employees[bindings[i]._employeeId]._name} ${
                     employees[bindings[i]._employeeId]._surname} z rolą ${
                     bindings[i]._role}\n`);
-                aboutToBeDeleted.concat(`${
+                aboutToBeDeleted = aboutToBeDeleted.concat(`${
                     employees[bindings[i]._employeeId]._name} ${
                     employees[bindings[i]._employeeId]._surname} z rolą ${
                     bindings[i]._role}\n`);

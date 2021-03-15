@@ -63,7 +63,7 @@ class Renderer {
                 this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
 
         tasks.map(task => {
-            let progressPercent = (Date.now() - task._addedAt) / (task._pastDue - task._addedAt);
+            let progressPercent = ((Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
             taskContainer.appendChild(
                 this.formEntity(
                     `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated}h
