@@ -5,11 +5,12 @@ class Task {
      */
     constructor(name, timeAllocated) {
         let now = new Date(Date.now());
+        let targetTime = now.setHours(now.getHours() + timeAllocated);
 
         this._name = name;
         this._timeAllocated = timeAllocated;
         this._addedAt = now;
-        this._pastDue = new Date(now.setHours(now.getHours() + timeAllocated));
+        this._pastDue = new Date(targetTime);
     }
 
     get name() {

@@ -74,9 +74,10 @@ function taskDelete(taskId) {
         }
     }
 
-    const deleteConfirmation = confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`);
+    const deletionApproved = aboutToBeDeleted !== `` ?
+        confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`) : true;
 
-    if (confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`)) {
+    if (deletionApproved) {
         /**
          * Remove instance.
          */
