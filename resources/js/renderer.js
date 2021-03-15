@@ -72,7 +72,7 @@ class Renderer {
             if (task._timeAllocated / (60 * 60 * 1000) > 1) {
                 time = `${task._timeAllocated / (60 * 60 * 1000)} h`;
             } else {
-                time = `${task._timeAllocated / (60 * 60 * 60 * 1000)} min`;
+                time = `${task._timeAllocated / (60 * 1000)} min`;
             }
 
             let entity = this.formEntity(`Zadanie: ${task._name}<br>Czas: ${time}<br>
