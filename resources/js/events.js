@@ -8,7 +8,6 @@ document.addEventListener(`DOMContentLoaded`, () => {
 document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.ADD);
 
-
     document.querySelector(`.submit-employee-add`).addEventListener(`click`, (e) => {
         employeeAdd(
             new Employee(
@@ -42,7 +41,6 @@ document.querySelector(`.button-employee-delete`).addEventListener(`click`, () =
 document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.TASK.ADD);
 
-
     document.querySelector(`.submit-task-add`).addEventListener(`click`, (e) => {
         taskAdd(
             new Task(
@@ -63,6 +61,7 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
 
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
+
 
         taskDelete(Number(selectTask.selectedIndex));
         Renderer.renderEntities();

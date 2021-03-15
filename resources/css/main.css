@@ -83,6 +83,13 @@ h2::after{
     margin: 0.5rem auto;
 }
 
+.result-block{
+    display: block;
+    padding: 2em;
+    margin: 1em auto;
+    background-color: var(--color-banana);
+}
+
 /* Media queries */
 /* Large devices (desktops, up to 1200px) */
 @media (max-width: 1200px) {

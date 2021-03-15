@@ -74,6 +74,15 @@ class Renderer {
     }
 
     /**
+     * Renders total employee-task bindings status.
+     */
+    static renderProgressBar() {
+        const employeeContainer = document.querySelector(`.progress-container`);
+
+
+    }
+
+    /**
      * Renders a form in-place.
      * @param {Form | string} form
      */
@@ -89,7 +98,7 @@ class Renderer {
     static formEntity(content) {
         const template = document.createElement(`entity`);
 
-        template.innerHTML = `<p>${content}</p>`;
+        template.innerHTML = `<div class="result-block">${content}</div>`;
 
         return template;
     }
