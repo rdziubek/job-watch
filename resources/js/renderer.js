@@ -61,14 +61,20 @@ class Renderer {
         employees.map(employee =>
             employeeContainer.appendChild(
                 this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
-        tasks.map(task =>
+
+        tasks.map(task => {
+            let progressPercent = (Date.now() - task._addedAt) / (task._pastDue - task._addedAt);
             taskContainer.appendChild(
-                this.formEntity(`Zadanie: ${task._name}<br>Czas: ${task._timeAllocated}h`)));
-            /** TODO: Each time a task is rendered in an entity, render a progressbar (a.k.a. here)
-             *   The task should store target datetime (Date.now() + task._timeAllocated), then on each render it counts:
-             *   task._targetTime - Date.now() = task._timeRemaining
-             *   A progressbar then renders itself at a ratio of (1 - task._timeRemaining) / task._totalTaskLength inside
-             */
+                this.formEntity(
+                    `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated}h
+                    <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`
+                ))
+        });
+        /** TODO: Each time a task is rendered in an entity, render a progressbar (a.k.a. here)
+         *   The task should store target datetime (task._pastDue), then on each render it counts:
+         *   task._pastDue - Date.now() = taskTimeRemaining
+         *   A progressbar then renders itself at a ratio of [(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)] inside
+         */
         bindings.map(binding =>
             bindingContainer.appendChild(
                 this.formEntity(

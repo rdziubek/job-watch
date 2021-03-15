@@ -62,7 +62,7 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
-    let aboutToBeDeleted = ``;
+    let aboutToBeDeleted = `testing`;
     console.log(...bindings);
     for (let i = 0; i < bindings.length; i++) {
         if (taskId === bindings[i]._taskId) {

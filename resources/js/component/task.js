@@ -7,7 +7,7 @@ class Task {
         this._name = name;
         this._timeAllocated = timeAllocated;
         this._addedAt = Date.now();
-        this._pastDue = new Date.now().setHours(new Date.now().getHours + timeAllocated);
+        this._pastDue = new Date().setHours(new Date().getHours() + timeAllocated);
     }
 
     get name() {
