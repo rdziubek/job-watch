@@ -63,12 +63,19 @@ class Renderer {
                 this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
         
         tasks.map(task => {
+            /*
+             *  Don't ask me what progressPercent is :-)
+             *  It just works
+             */
             let progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
             taskContainer.appendChild(
                 this.formEntity(
                     `Zadanie: ${task._name}<br>Czas: ${task._timeAllocated / (60 * 60 * 1000)}h
                     <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`
                 ))
+            setInterval(()=>{
+
+            }, 1000);
         });
         /** TODO: Each time a task is rendered in an entity, render a progressbar (a.k.a. here)
          *   The task should store target datetime (task._pastDue), then on each render it counts:

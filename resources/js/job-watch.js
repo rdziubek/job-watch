@@ -29,32 +29,54 @@ function taskAdd(task) {
  * @param {number} employeeId Employee to be removed at the given index.
  */
 function employeeDelete(employeeId) {
-    /**
-     * Remove instance.
-     */
-    employees.splice(employeeId, 1);
-    PersistentManager.updateStorage(Key.EMPLOYEE, employees);
-
 
     /**
-     * Remove related bindings.
-     *
-     * NOTE: Offset any indexes affected by the splicing in another, separate loop.
-     *  Doing it in one loop is problematic due to the binding length changing and stuff.
+     * Verify deleted objects.
+     * TODO: Factor this out of here
      */
+    let aboutToBeDeleted = ``;
     for (let i = 0; i < bindings.length; i++) {
         if (employeeId === bindings[i]._employeeId) {
-            if (i < bindings.length) bindings.splice(i, 1);
+            if (i < bindings.length) {
+                aboutToBeDeleted = aboutToBeDeleted.concat(`${
+                    employees[bindings[i]._employeeId]._name} ${
+                    employees[bindings[i]._employeeId]._surname} z rolą ${
+                    bindings[i]._role}\n`);
+            }
         }
     }
-    for (let i = 0; i < bindings.length; i++) {
-        if (employeeId < bindings[i]._employeeId) bindings[i]._employeeId -= 1;
+
+    const deletionApproved = aboutToBeDeleted !== `` ?
+        confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`) : true;
+
+    if (deletionApproved) {
+        /**
+         * Remove instance.
+         */
+        employees.splice(employeeId, 1);
+        PersistentManager.updateStorage(Key.EMPLOYEE, employees);
+
+
+        /**
+         * Remove related bindings.
+         *
+         * NOTE: Offset any indexes affected by the splicing in another, separate loop.
+         *  Doing it in one loop is problematic due to the binding length changing and stuff.
+         */
+        for (let i = 0; i < bindings.length; i++) {
+            if (employeeId === bindings[i]._employeeId) {
+                if (i < bindings.length) bindings.splice(i, 1);
+            }
+        }
+        for (let i = 0; i < bindings.length; i++) {
+            if (employeeId < bindings[i]._employeeId) bindings[i]._employeeId -= 1;
+        }
+
+        PersistentManager.updateStorage(Key.BINDING, bindings);
+
+        // Reload the page to update the select lists
+        location.reload();
     }
-
-    PersistentManager.updateStorage(Key.BINDING, bindings);
-
-    // Reload the page to update the select lists
-    location.reload();
 }
 
 /**
