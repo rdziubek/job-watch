@@ -5,7 +5,7 @@ class Task {
      */
     constructor(name, timeAllocated) {
         this._name = name;
-        this._timeAllocated = new Date().setHours(timeAllocated);
+        this._timeAllocated = timeAllocated;
         this._addedAt = Date.now();
         this._pastDue = new Date().setHours(new Date().getHours() + timeAllocated);
     }
