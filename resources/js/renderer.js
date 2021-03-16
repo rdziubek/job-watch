@@ -14,7 +14,7 @@ class Renderer {
         employees.map(employee => {
             const option = document.createElement(`option`);
 
-            option.innerText = `${employee._name} ${employee._surname}`;
+            option.innerText = `${employee.name} ${employee.surname}`;
             select.appendChild(option);
         });
     }
@@ -33,7 +33,7 @@ class Renderer {
         tasks.map(task => {
             const option = document.createElement(`option`);
 
-            option.innerText = task._name;
+            option.innerText = task.name;
             select.appendChild(option);
         });
     }
@@ -60,22 +60,22 @@ class Renderer {
 
         employees.map(employee =>
             employeeContainer.appendChild(
-                this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
+                this.formEntity(`Pracownik: ${employee.name} ${employee.surname}`)));
 
         tasks.map(task => {
             let currentProgress = 100;
-            const timeStatus = task._timeAllocated / (60 * 60 * 1000) > 1 ?
-                `${task._timeAllocated / (60 * 60 * 1000)} h` :
-                `${task._timeAllocated / (60 * 1000)} min`;
+            const timeStatus = task.timeAllocated / (60 * 60 * 1000) > 1 ?
+                `${task.timeAllocated / (60 * 60 * 1000)} h` :
+                `${task.timeAllocated / (60 * 1000)} min`;
 
-            const taskNode = this.formEntity(`Zadanie: ${task._name
+            const taskNode = this.formEntity(`Zadanie: ${task.name
             }<br>Maksymalny czas: ${timeStatus
-            }<br>Czas zakończenia: ${new Date(task._pastDue).toLocaleTimeString()
+            }<br>Czas zakończenia: ${new Date(task.pastDue).toLocaleTimeString()
             }<br><progress class="task-time-remaining" max="100" value="${currentProgress}"></progress>`);
             taskContainer.appendChild(taskNode);
 
             setInterval(() => {
-                currentProgress = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
+                currentProgress = (Math.abs(Date.now() - task.addedAt) / (task.pastDue - task.addedAt)) * 100;
                 taskNode.querySelector(`.result-block progress`).value = currentProgress;
             }, 1000);
         });
@@ -84,15 +84,17 @@ class Renderer {
             let currentRatio = 1;
 
             const bindingNode = this.formEntity(`Pracownik: ${
-                employees[binding._employeeId]._name} ${employees[binding._employeeId]._surname
-            }<br>Zadanie: ${tasks[binding._taskId]._name
-            }<br>Rola: ${binding._role
-            }<br>Stosunek do czasu pracy pracownika: <progress class="task-employee-time-ratio" max="1" value="${
+                employees[binding.employeeId].name} ${employees[binding.employeeId].surname
+            }<br>Zadanie: ${tasks[binding.taskId].name
+            }<br>Rola: ${binding.role
+            }<br>Obecny stosunek do czasu pracy pracownika: <progress class="task-employee-time-ratio" max="1" value="${
                 currentRatio}"></progress>`);
             bindingContainer.appendChild(bindingNode);
 
             setInterval(() => {
-                currentRatio = tasks[binding._taskId]._timeAllocated / (8 * 60 * 60 * 1000);
+                currentRatio = tasks[binding.taskId] !== undefined ?
+                    tasks[binding.taskId].timeAllocated / (8 * 60 * 60 * 1000) :
+                    1;
                 bindingNode.querySelector(`.result-block progress`).value = currentRatio;
             }, 1000);
         });

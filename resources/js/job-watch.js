@@ -36,12 +36,12 @@ function employeeDelete(employeeId) {
      */
     let aboutToBeDeleted = ``;
     for (let i = 0; i < bindings.length; i++) {
-        if (employeeId === bindings[i]._employeeId) {
+        if (employeeId === bindings[i].employeeId) {
             if (i < bindings.length) {
                 aboutToBeDeleted = aboutToBeDeleted.concat(` • ${
-                    employees[bindings[i]._employeeId]._name} ${
-                    employees[bindings[i]._employeeId]._surname} z rolą ${
-                    bindings[i]._role}\n`);
+                    employees[bindings[i].employeeId].name} ${
+                    employees[bindings[i].employeeId].surname} z rolą ${
+                    bindings[i].role}\n`);
             }
         }
     }
@@ -64,12 +64,12 @@ function employeeDelete(employeeId) {
          *  Doing it in one loop is problematic due to the binding length changing and stuff.
          */
         for (let i = 0; i < bindings.length; i++) {
-            if (employeeId === bindings[i]._employeeId) {
+            if (employeeId === bindings[i].employeeId) {
                 if (i < bindings.length) bindings.splice(i, 1);
             }
         }
         for (let i = 0; i < bindings.length; i++) {
-            if (employeeId < bindings[i]._employeeId) bindings[i]._employeeId -= 1;
+            if (employeeId < bindings[i].employeeId) bindings[i].employeeId -= 1;
         }
 
         PersistentManager.updateStorage(Key.BINDING, bindings);
@@ -91,12 +91,12 @@ function taskDelete(taskId) {
      */
     let aboutToBeDeleted = ``;
     for (let i = 0; i < bindings.length; i++) {
-        if (taskId === bindings[i]._taskId) {
+        if (taskId === bindings[i].taskId) {
             if (i < bindings.length) {
                 aboutToBeDeleted = aboutToBeDeleted.concat(` • ${
-                    employees[bindings[i]._employeeId]._name} ${
-                    employees[bindings[i]._employeeId]._surname} z rolą ${
-                    bindings[i]._role}\n`);
+                    employees[bindings[i].employeeId].name} ${
+                    employees[bindings[i].employeeId].surname} z rolą ${
+                    bindings[i].role}\n`);
             }
         }
     }
@@ -118,12 +118,12 @@ function taskDelete(taskId) {
          *  Doing it in one loop is problematic due to the binding length changing and stuff.
          */
         for (let i = 0; i < bindings.length; i++) {
-            if (taskId === bindings[i]._taskId) {
+            if (taskId === bindings[i].taskId) {
                 if (i < bindings.length) bindings.splice(i, 1);
             }
         }
         for (let i = 0; i < bindings.length; i++) {
-            if (taskId < bindings[i]._taskId) bindings[i]._taskId -= 1;
+            if (taskId < bindings[i].taskId) bindings[i].taskId -= 1;
         }
 
         PersistentManager.updateStorage(Key.BINDING, bindings);
@@ -152,8 +152,8 @@ function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
  */
 function employeeTaskRetain(taskId, employeeId) {
     for (let i of bindings.keys()) {
-        if (employeeId === bindings[i]._employeeId &&
-            taskId === bindings[i]._taskId) {
+        if (employeeId === bindings[i].employeeId &&
+            taskId === bindings[i].taskId) {
             bindings.splice(i, 1);
         }
     }
