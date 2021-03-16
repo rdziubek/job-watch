@@ -19,5 +19,5 @@ od użytkownika; dalsze opracowywanie i stwarzanie odpowiednich form obiektów p
 i kontrolujących dane rozumiane jako ich przepływ oraz ich przechowywanie.
 Patryk Dziurkowski – organizacja interfejsu użytkownika; opracowanie i implementacja sposobu przechwytywania
 wprowadzanych danych; dostosowanie właściwości i metod obiektów do formułowanej struktury logicznej aplikacji;
-opracowanie strategii i eliminacja błędów przetwarzania danych przetwarzanych, szczeg. w momencie usuwania
+opracowanie strategii i eliminacja błędów przetwarzania danych przetwarzanych, w szczeg. w momencie usuwania
 istniejących instancji obiektów.
