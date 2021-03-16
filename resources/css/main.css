@@ -4,6 +4,12 @@
     --color-tomato: #FF665A;
     --color-eggplant: #7D6B7D;
     --color-grey: #A3A1A8;
+
+    --background-color: white;
+    --border-color: var(--color-grey);
+    --border-button-width: .4rem;
+    --border-input-width: calc(var(--border-button-width) / 2) solid var(--color-grey);
+    --border-radius: 1.5rem;
 }
 
 *, body, html {
@@ -15,9 +21,8 @@
 
 body {
     transition: background-image 0.3s ease-in-out;
-    background-image: url(../images/symphony.png);
-    background-image: url(../images/symphony.png), linear-gradient(180deg, rgba(212, 200, 921,1) 0%, rgba(252,225,255,1) 30%, rgba(111,0,255,1) 100%);
-    background-repeat:repeat;
+linear-gradient(180 deg, rgba(212, 200, 921, 1) 0 %, rgba(252, 225, 255, 1) 30 %, rgba(111, 0, 255, 1) 100 %);
+    background-repeat: repeat;
 }
 
 /* Container elements */
@@ -51,48 +56,60 @@ body {
     margin: 2rem auto;
 }
 
-entity {
-
-}
-
 /* Individual elements */
-.button, input[type="submit"]{
-    height: 4rem;
+.button, input[type="submit"] {
+    font-weight: 700;
+    height: 5rem;
+    color: white;
     background-color: var(--color-watermelon);
-    border: 0.05rem solid black;
+    border-radius: var(--border-radius);
     transition: background-color 0.1s ease-in-out;
+    border: var(--border-button-width) solid var(--color-watermelon);
+    font-size: 100%;
 }
 
-input[type="submit"]{
-    width: 6rem;
+input[type="submit"] {
+    width: 7rem;
     height: 3rem;
     margin: 1rem;
 }
 
+input[type="text"], input[type="number"], select {
+    margin: .2rem 0;
+    border-radius: var(--border-radius);
+    border: var(--border-input-width);
+}
+
+label {
+    font-weight: 100;
+}
+
 .button:hover, input[type="submit"]:hover {
-    background-color: var(--color-tomato);
+    background-color: var(--background-color);
+    color: var(--color-watermelon);
+    border: var(--border-button-width) solid var(--color-watermelon);
 }
 
 select, option {
     min-width: 6rem;
 }
 
-h2::after{
+h2::after {
     content: '';
     width: 80%;
-    height: 1px;
+    height: .25rem;
     background-color: var(--color-grey);
     display: block;
     margin: 0.5rem auto;
 }
 
-.result-block{
+.result-block {
     display: block;
-    border: 0.05rem solid var(--color-eggplant);
+    border: var(--border-button-width) solid var(--color-eggplant);
     width: 20rem;
     padding: 2em;
     margin: 1em auto;
-    background-color: var(--color-banana);
+    overflow: scroll;
 }
 
 /* Media queries */
@@ -113,6 +130,7 @@ h2::after{
         /* 2x 10rem buttons + 1x 1rem gap */
         width: 21rem;
     }
+
     .wrapper {
         width: 100vw;
     }

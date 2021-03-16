@@ -7,10 +7,10 @@ const Form = {
         </h2>
         <label>Imię
             <input type="text" class="name">
-        </label>
+        </label><br>
         <label>Nazwisko
             <input type="text" class="surname">
-        </label>
+        </label><br>
         <input type="submit" class="submit-employee-add" value="Dodaj">
     </form>`,
 
@@ -22,7 +22,7 @@ const Form = {
         <label>Pracownik:
             <select class="select-employee">
             </select>
-        </label>
+        </label><br>
         <input type="submit" class="submit-employee-delete" value="Usuń">
     </form>`,
     },
@@ -35,10 +35,10 @@ const Form = {
         </h2>
         <label>Nazwa
             <input type="text" class="name">
-        </label>
+        </label><br>
         <label>Czas na wykonanie
             <input type="number" class="time-remaining">
-        </label>
+        </label><br>
         <input type="submit" class="submit-task-add" value="Utwórz">
     </form>`,
 
@@ -50,7 +50,7 @@ const Form = {
         <label>Zadanie:
             <select class="select-task">
             </select>
-        </label>
+        </label><br>
         <input type="submit" class="submit-task-delete" value="Usuń">
     </form>`,
     },
@@ -63,14 +63,14 @@ const Form = {
         <label>Zadanie:
             <select class="select-task">
             </select>
-        </label>
+        </label><br>
         <label>Pracownik:
             <select class="select-employee">
             </select>
-        </label>
+        </label><br>
         <label>Rola
             <input type="text" class="role">
-        </label>
+        </label><br>
         <input type="submit" class="submit-employee-task-assign" value="Przydziel">
     </form>`,
 
@@ -82,11 +82,11 @@ const Form = {
         <label>Zadanie:
             <select class="select-task">
             </select>
-        </label>
+        </label><br>
         <label>Pracownik:
             <select class="select-employee">
             </select>
-        </label>
+        </label><br>
         <input type="submit" class="submit-employee-task-retain" value="Usuń">
     </form>`,
 }
