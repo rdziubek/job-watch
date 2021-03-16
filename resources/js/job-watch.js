@@ -103,16 +103,11 @@ function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
 
 /**
  * Removes the employee-task bond.
- * @param taskId Task's {@see Task} id from which the employee is to be retained.
- * @param employeeId Employee's {@see Employee} id from which the task is to be retained.
+ * @param {number} bindingId Id of the binding {@see Binding} which is to be removed.
  */
-function employeeTaskRetain(taskId, employeeId) {
-    for (let i of bindings.keys()) {
-        if (employeeId === bindings[i].employeeId &&
-            taskId === bindings[i].taskId) {
-            bindings.splice(i, 1);
-        }
-    }
+function employeeTaskRetain(bindingId) {
+    bindings.splice(bindingId, 1);
+
     PersistentManager.updateStorage(Key.BINDING, bindings);
 }
 

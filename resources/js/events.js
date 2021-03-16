@@ -1,6 +1,4 @@
-document.addEventListener(`DOMContentLoaded`, () => {
-    Renderer.renderEntities();
-});
+document.addEventListener(`DOMContentLoaded`, () => Renderer.renderEntities());
 
 /**
  * Add-employee handler.
@@ -23,12 +21,15 @@ document.querySelector(`.button-employee-add`).addEventListener(`click`, () => {
  */
 document.querySelector(`.button-employee-delete`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.EMPLOYEE.DELETE);
-    Renderer.renderEmployeeList(employees);
+    Renderer.renderEmployeeList();
 
     document.querySelector(`.submit-employee-delete`).addEventListener(`click`, (e) => {
         const selectEmployee = document.querySelector(`.select-employee`);
 
         employeeDelete(Number(selectEmployee.selectedIndex));
+
+        Renderer.renderEmployeeList();
+
         Renderer.renderEntities();
         e.preventDefault();
     });
@@ -55,13 +56,16 @@ document.querySelector(`.button-task-add`).addEventListener(`click`, () => {
  */
 document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.TASK.DELETE);
-    Renderer.renderTaskList(tasks);
+    Renderer.renderTaskList();
     Renderer.renderEntities();
 
     document.querySelector(`.submit-task-delete`).addEventListener(`click`, (e) => {
         const selectTask = document.querySelector(`.select-task`);
 
         taskDelete(Number(selectTask.selectedIndex));
+
+        Renderer.renderTaskList();
+
         Renderer.renderEntities();
         e.preventDefault();
     });
@@ -72,8 +76,8 @@ document.querySelector(`.button-task-delete`).addEventListener(`click`, () => {
  */
 document.querySelector(`.button-employee-task-assign`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.ASSIGN);
-    Renderer.renderTaskList(tasks);
-    Renderer.renderEmployeeList(employees);
+    Renderer.renderTaskList();
+    Renderer.renderEmployeeList();
     Renderer.renderEntities();
 
     document.querySelector(`.submit-employee-task-assign`).addEventListener(`click`, (e) => {
@@ -84,6 +88,10 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
             Number(selectTask.selectedIndex),
             Number(selectEmployee.selectedIndex),
             document.querySelector(`.role`).value);
+
+        Renderer.renderTaskList();
+        Renderer.renderEmployeeList();
+
         Renderer.renderEntities();
         e.preventDefault();
     });
@@ -94,17 +102,19 @@ document.querySelector(`.button-employee-task-assign`).addEventListener(`click`,
  */
 document.querySelector(`.button-employee-task-retain`).addEventListener(`click`, () => {
     Renderer.renderForm(Form.RETAIN);
-    Renderer.renderTaskList(tasks);
-    Renderer.renderEmployeeList(employees);
+    Renderer.renderBindingList();
     Renderer.renderEntities();
 
     document.querySelector(`.submit-employee-task-retain`).addEventListener(`click`, (e) => {
-        const selectTask = document.querySelector(`.select-task`);
-        const selectEmployee = document.querySelector(`.select-employee`);
+        const selectTask = document.querySelector(`.select-binding`);
 
-        employeeTaskRetain(
-            Number(selectTask.selectedIndex),
-            Number(selectEmployee.selectedIndex));
+        employeeTaskRetain(Number(selectTask.selectedIndex));
+
+        /**
+         * Re-render dataset after operation.
+         */
+        Renderer.renderBindingList();
+
         Renderer.renderEntities();
         e.preventDefault();
     });

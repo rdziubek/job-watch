@@ -5,6 +5,7 @@ class Renderer {
      */
     static renderEmployeeList() {
         const select = document.querySelector(`.select-employee`);
+        this.clearBuffer(select);
 
         /**
          * Update data-set with persistent-storage.
@@ -20,10 +21,11 @@ class Renderer {
     }
 
     /**
-     * Updates drop-down list dataset.
+     * Updates drop-down task list dataset.
      */
     static renderTaskList() {
         const select = document.querySelector(`.select-task`);
+        this.clearBuffer(select);
 
         /**
          * Update data-set with persistent-storage.
@@ -34,6 +36,30 @@ class Renderer {
             const option = document.createElement(`option`);
 
             option.innerText = task.name;
+            select.appendChild(option);
+        });
+    }
+
+    /**
+     * Updates drop-down assignment list dataset.
+     */
+    static renderBindingList() {
+        const select = document.querySelector(`.select-binding`);
+        this.clearBuffer(select);
+
+        /**
+         * Update data-set with persistent-storage.
+         */
+        PersistentManager.updateDataSet(bindings, Key.BINDING);
+
+        bindings.map(binding => {
+            const option = document.createElement(`option`);
+
+            option.innerText = `${
+                tasks[binding.taskId].name} – ${
+                employees[binding.employeeId].name} ${
+                employees[binding.employeeId].surname} – ${
+                binding.role}`;
             select.appendChild(option);
         });
     }

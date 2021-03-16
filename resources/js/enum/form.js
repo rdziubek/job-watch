@@ -79,12 +79,8 @@ const Form = {
         <h2>
             Usuń pracownika z zadania
         </h2>
-        <label>Zadanie:
-            <select class="select-task">
-            </select>
-        </label><br>
-        <label>Pracownik:
-            <select class="select-employee">
+        <label>Przydział:
+            <select class="select-binding">
             </select>
         </label><br>
         <input type="submit" class="submit-employee-task-retain" value="Usuń">
