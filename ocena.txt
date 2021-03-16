@@ -1,5 +1,23 @@
 Ocena: celujący
 
+Uzasadnienie:
+Praca spełnia wszystkie wymagania, tj. tak jak wymieniono w punkcie
+"Na ocenę 6." oraz "Na ocenę 5." opisu zadania – aplikacja zdolna jest do optymalnego
+wykorzystywania funkcjonalności localStorage modelu DOM, tworzenia dowolnej liczby
+zarówno zadań jak i pracowników, niezależnych od siebie powiązań między nimi, usuwania
+każdej z tworzonych instancji, również z uprzednim wyświetlaniem potwierdzenia. Ponadto,
+aplikacja oferuje czas zakończenia każdego zadania rozpoczynającego się też w momencie
+jego dodawania, jak i elementy wskazujące stosunek procentowy czasu zdania przydzielonego
+każdemu z pracowników do jego – 8-godzinnego czasu pracy, jak określono to w punkcie
+"Na ocenę 6".
+
 Podsumowanie pracy:
-Robert Dziubek –
-Patryk Dziurkowski –
+Robert Dziubek – organizacja pracy; opracowanie specyfikacji zadania; opracowanie i wdrożenie implementacji struktury
+podstawy logicznej aplkacji; dostosowanie interfejsu użytkownika zgodnie z potrzebami pojawiającymi się w trakcie
+wdrażania; opracowanie strategii i eliminacja błędów powstających w procesie przetwarzania informacji pobieranych
+od użytkownika; dalsze opracowywanie i stwarzanie odpowiednich form obiektów przechowujących, przetwarzających
+i kontrolujących dane rozumiane jako ich przepływ oraz ich przechowywanie.
+Patryk Dziurkowski – organizacja interfejsu użytkownika; opracowanie i implementacja sposobu przechwytywania
+wprowadzanych danych; dostosowanie właściwości i metod obiektów do formułowanej struktury logicznej aplikacji;
+opracowanie strategii i eliminacja błędów przetwarzania danych przetwarzanych, szczeg. w momencie usuwania
+istniejących instancji obiektów.
