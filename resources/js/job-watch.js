@@ -29,27 +29,7 @@ function taskAdd(task) {
  * @param {number} employeeId Employee to be removed at the given index.
  */
 function employeeDelete(employeeId) {
-
-    /**
-     * Verify deleted objects.
-     * TODO: Factor this out of here
-     */
-    let aboutToBeDeleted = ``;
-    for (let i = 0; i < bindings.length; i++) {
-        if (employeeId === bindings[i].employeeId) {
-            if (i < bindings.length) {
-                aboutToBeDeleted = aboutToBeDeleted.concat(` • ${
-                    employees[bindings[i].employeeId].name} ${
-                    employees[bindings[i].employeeId].surname} z rolą ${
-                    bindings[i].role}\n`);
-            }
-        }
-    }
-
-    const deletionApproved = aboutToBeDeleted !== `` ?
-        confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`) : true;
-
-    if (deletionApproved) {
+    if (DropGuard.verifyDeletion(Key.EMPLOYEE, employeeId)) {
         /**
          * Remove instance.
          */
@@ -84,27 +64,7 @@ function employeeDelete(employeeId) {
  * @param {number} taskId Task to be removed at the given index.
  */
 function taskDelete(taskId) {
-
-    /**
-     * Verify deleted objects.
-     * TODO: Factor this out of here
-     */
-    let aboutToBeDeleted = ``;
-    for (let i = 0; i < bindings.length; i++) {
-        if (taskId === bindings[i].taskId) {
-            if (i < bindings.length) {
-                aboutToBeDeleted = aboutToBeDeleted.concat(` • ${
-                    employees[bindings[i].employeeId].name} ${
-                    employees[bindings[i].employeeId].surname} z rolą ${
-                    bindings[i].role}\n`);
-            }
-        }
-    }
-
-    const deletionApproved = aboutToBeDeleted !== `` ?
-        confirm(`${Strings.TASK_DELETE_WARNING}${aboutToBeDeleted}`) : true;
-
-    if (deletionApproved) {
+    if (DropGuard.verifyDeletion(Key.TASK, taskId)) {
         /**
          * Remove instance.
          */
