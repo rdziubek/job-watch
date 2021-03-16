@@ -6,7 +6,7 @@ class Task extends Parcelable {
     constructor(name, timeAllocated) {
         super();
 
-        let now = new Date(Date.now());
+        const now = new Date(Date.now());
 
         this._name = name;
         this._timeAllocated = timeAllocated * 60 * 60 * 1000;
