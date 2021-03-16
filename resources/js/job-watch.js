@@ -85,7 +85,6 @@ function _deleteBindingsRelatedTo(key, index) {
     }
 
     PersistentManager.updateStorage(Key.BINDING, bindings);
-    console.log(`current bindings:`, bindings);
 }
 
 /**
