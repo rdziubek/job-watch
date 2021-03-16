@@ -52,7 +52,6 @@ class Renderer {
         PersistentManager.updateDataSet(tasks, Key.TASK);
         PersistentManager.updateDataSet(employees, Key.EMPLOYEE);
         PersistentManager.updateDataSet(bindings, Key.BINDING);
-        console.log(`employees unpacked:`, ...employees);
 
         /**
          * Clear buffer and map elements into UI.

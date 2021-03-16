@@ -128,6 +128,15 @@ h2::after {
 /**
    Progress bar styling
  */
+progress.task-time-remaining {
+    margin: 1rem auto;
+}
+
+progress.task-employee-time-ratio {
+    margin: .25rem auto;
+}
+
+/* Background */
 progress::-webkit-progress-bar {
     background: var(--color-eggplant);
     width: 100%;
