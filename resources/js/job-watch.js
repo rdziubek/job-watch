@@ -37,9 +37,6 @@ function employeeDelete(employeeId) {
         PersistentManager.updateStorage(Key.EMPLOYEE, employees);
 
         _deleteBindingsRelatedTo(Key.EMPLOYEE, employeeId);
-
-        // Reload the page to update the select lists
-        location.reload();
     }
 }
 
@@ -56,9 +53,6 @@ function taskDelete(taskId) {
         PersistentManager.updateStorage(Key.TASK, tasks);
 
         _deleteBindingsRelatedTo(Key.TASK, taskId);
-
-        // Reload the page to update the select lists
-        location.reload();
     }
 }
 
@@ -74,14 +68,22 @@ function _deleteBindingsRelatedTo(key, index) {
      * NOTE: Offset any indexes affected by the splicing in another, separate loop.
      *  Doing it in one go is problematic due to the binding length changing,
      *  hence the approach.
+     *  Iterator has to get decremented every time an element gets spliced from the array
+     *  (which gets then shrunk by it) so that no array elements are omitted.
      */
     for (let i = 0; i < bindings.length; i++) {
         if (index === bindings[i][`${key}Id`]) {
-            if (i < bindings.length) bindings.splice(i, 1);
+            if (i < bindings.length) {
+                bindings.splice(i, 1);
+
+                i -= 1;
+            }
         }
     }
     for (let i = 0; i < bindings.length; i++) {
-        if (index < bindings[i][`${key}Id`]) bindings[i][`${key}Id`] -= 1;
+        if (index < bindings[i][`${key}Id`]) {
+            bindings[i][`${key}Id`] -= 1;
+        }
     }
 
     PersistentManager.updateStorage(Key.BINDING, bindings);
@@ -110,10 +112,3 @@ function employeeTaskRetain(bindingId) {
 
     PersistentManager.updateStorage(Key.BINDING, bindings);
 }
-
-/**
- * Update UI state.
- */
-setInterval(() => {
-
-}, Timing.UI_UPDATE_INTERVAL);
