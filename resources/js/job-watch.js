@@ -94,9 +94,11 @@ function _deleteBindingsRelatedTo(key, index) {
  * @param {string} employeeTaskRole Role fulfilled by the employee assigned.
  */
 function employeeTaskAssign(taskId, employeeId, employeeTaskRole) {
-    bindings.push(new Binding(taskId, employeeId, employeeTaskRole));
+    if (!!employees.length && !!tasks.length) {
+        bindings.push(new Binding(taskId, employeeId, employeeTaskRole));
 
-    PersistentManager.updateStorage(Key.BINDING, bindings);
+        PersistentManager.updateStorage(Key.BINDING, bindings);
+    }
 }
 
 /**
