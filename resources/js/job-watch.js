@@ -36,23 +36,7 @@ function employeeDelete(employeeId) {
         employees.splice(employeeId, 1);
         PersistentManager.updateStorage(Key.EMPLOYEE, employees);
 
-
-        /**
-         * Remove related bindings.
-         *
-         * NOTE: Offset any indexes affected by the splicing in another, separate loop.
-         *  Doing it in one loop is problematic due to the binding length changing and stuff.
-         */
-        for (let i = 0; i < bindings.length; i++) {
-            if (employeeId === bindings[i].employeeId) {
-                if (i < bindings.length) bindings.splice(i, 1);
-            }
-        }
-        for (let i = 0; i < bindings.length; i++) {
-            if (employeeId < bindings[i].employeeId) bindings[i].employeeId -= 1;
-        }
-
-        PersistentManager.updateStorage(Key.BINDING, bindings);
+        _deleteBindingsRelatedTo(Key.EMPLOYEE, employeeId);
 
         // Reload the page to update the select lists
         location.reload();
@@ -71,26 +55,37 @@ function taskDelete(taskId) {
         tasks.splice(taskId, 1);
         PersistentManager.updateStorage(Key.TASK, tasks);
 
-        /**
-         * Remove related bindings.
-         *
-         * NOTE: Offset any indexes affected by the splicing in another, separate loop.
-         *  Doing it in one loop is problematic due to the binding length changing and stuff.
-         */
-        for (let i = 0; i < bindings.length; i++) {
-            if (taskId === bindings[i].taskId) {
-                if (i < bindings.length) bindings.splice(i, 1);
-            }
-        }
-        for (let i = 0; i < bindings.length; i++) {
-            if (taskId < bindings[i].taskId) bindings[i].taskId -= 1;
-        }
-
-        PersistentManager.updateStorage(Key.BINDING, bindings);
+        _deleteBindingsRelatedTo(Key.TASK, taskId);
 
         // Reload the page to update the select lists
         location.reload();
     }
+}
+
+/**
+ * Clears up bindings no longer valid due to employee/task instances being removed.
+ * @param {Key} key Identifier of the collection the cleanup is to be based on.
+ * @param {number} index Index of the collection element which a corresponding
+ * binding is to be found based on.
+ * @private
+ */
+function _deleteBindingsRelatedTo(key, index) {
+    /**
+     * NOTE: Offset any indexes affected by the splicing in another, separate loop.
+     *  Doing it in one go is problematic due to the binding length changing,
+     *  hence the approach.
+     */
+    for (let i = 0; i < bindings.length; i++) {
+        if (index === bindings[i][`${key}Id`]) {
+            if (i < bindings.length) bindings.splice(i, 1);
+        }
+    }
+    for (let i = 0; i < bindings.length; i++) {
+        if (index < bindings[i][`${key}Id`]) bindings[i][`${key}Id`] -= 1;
+    }
+
+    PersistentManager.updateStorage(Key.BINDING, bindings);
+    console.log(`current bindings:`, bindings);
 }
 
 /**
