@@ -22,7 +22,10 @@
 
 body {
     transition: background-image 0.3s ease-in-out;
-linear-gradient(180 deg, rgba(212, 200, 921, 1) 0 %, rgba(252, 225, 255, 1) 30 %, rgba(111, 0, 255, 1) 100 %);
+    background: var(--color-banana);
+    background-image: url(../images/background.jpeg),
+    linear-gradient(180deg, rgba(212, 200, 921, 1) 0%, rgba(252, 225, 255, 1) 30%, rgba(111, 0, 255, 1) 100%);
+    background-size: 300px;
     background-repeat: repeat;
 }
 
@@ -55,6 +58,15 @@ linear-gradient(180 deg, rgba(212, 200, 921, 1) 0 %, rgba(252, 225, 255, 1) 30 %
 
 .progress-container {
     margin: 2rem auto;
+}
+
+.button:focus, input[type="submit"]:focus {
+    background-color: var(--background-color);
+    color: var(--color-watermelon);
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    border-color: var(--color-watermelon);
 }
 
 /* Individual elements */
@@ -113,7 +125,34 @@ h2::after {
     overflow: auto;
 }
 
-/* Media queries */
+/**
+   Progress bar styling
+ */
+progress::-webkit-progress-bar {
+    background: var(--color-eggplant);
+    width: 100%;
+}
+
+progress {
+    background: var(--color-eggplant);
+}
+
+/* Value */
+progress::-webkit-progress-value {
+    background-color: var(--color-banana) !important;
+}
+
+progress::-moz-progress-bar {
+    background-color: var(--color-banana) !important;
+}
+
+progress {
+    color: var(--color-banana);
+}
+
+/**
+    Media queries
+ */
 /* Large devices (desktops, up to 1200px) */
 @media (max-width: 1200px) {
 

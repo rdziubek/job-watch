@@ -38,7 +38,7 @@ function employeeDelete(employeeId) {
     for (let i = 0; i < bindings.length; i++) {
         if (employeeId === bindings[i]._employeeId) {
             if (i < bindings.length) {
-                aboutToBeDeleted = aboutToBeDeleted.concat(`${
+                aboutToBeDeleted = aboutToBeDeleted.concat(` • ${
                     employees[bindings[i]._employeeId]._name} ${
                     employees[bindings[i]._employeeId]._surname} z rolą ${
                     bindings[i]._role}\n`);
@@ -93,7 +93,7 @@ function taskDelete(taskId) {
     for (let i = 0; i < bindings.length; i++) {
         if (taskId === bindings[i]._taskId) {
             if (i < bindings.length) {
-                aboutToBeDeleted = aboutToBeDeleted.concat(`${
+                aboutToBeDeleted = aboutToBeDeleted.concat(` • ${
                     employees[bindings[i]._employeeId]._name} ${
                     employees[bindings[i]._employeeId]._surname} z rolą ${
                     bindings[i]._role}\n`);

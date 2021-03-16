@@ -63,10 +63,6 @@ class Renderer {
                 this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
 
         tasks.map(task => {
-            /*
-             *  Don't ask me what progressPercent is :-)
-             *  It just works
-             */
             let progressPercent = 0;
             let time = 0;
             if (task._timeAllocated / (60 * 60 * 1000) > 1) {
