@@ -23,8 +23,7 @@
 body {
     transition: background-image 0.3s ease-in-out;
     background: var(--color-banana);
-    background-image: url(../images/background.jpeg),
-    linear-gradient(180deg, rgba(212, 200, 921, 1) 0%, rgba(252, 225, 255, 1) 30%, rgba(111, 0, 255, 1) 100%);
+    background-image: url(../images/background.jpeg);
     background-size: 300px;
     background-repeat: repeat;
 }
@@ -101,6 +100,7 @@ label {
     background-color: var(--background-color);
     color: var(--color-watermelon);
     border: var(--border-button-width) solid var(--color-watermelon);
+    cursor: pointer;
 }
 
 select, option {
@@ -138,16 +138,28 @@ progress {
 }
 
 /* Value */
-progress::-webkit-progress-value {
+progress.task-time-remaining::-webkit-progress-value {
     background-color: var(--color-banana) !important;
 }
 
-progress::-moz-progress-bar {
+progress.task-time-remaining::-moz-progress-bar {
     background-color: var(--color-banana) !important;
 }
 
-progress {
+progress.task-employee-time-ratio::-webkit-progress-value {
+    background-color: var(--color-tomato) !important;
+}
+
+progress.task-employee-time-ratio::-moz-progress-bar {
+    background-color: var(--color-tomato) !important;
+}
+
+progress.task-time-remaining {
     color: var(--color-banana);
+}
+
+progress.task-employee-time-ratio {
+    color: var(--color-tomato);
 }
 
 /**

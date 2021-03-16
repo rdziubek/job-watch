@@ -63,28 +63,39 @@ class Renderer {
                 this.formEntity(`Pracownik: ${employee._name} ${employee._surname}`)));
 
         tasks.map(task => {
-            let progressPercent = 0;
-            let time = 0;
-            if (task._timeAllocated / (60 * 60 * 1000) > 1) {
-                time = `${task._timeAllocated / (60 * 60 * 1000)} h`;
-            } else {
-                time = `${task._timeAllocated / (60 * 1000)} min`;
-            }
+            let currentProgress = 100;
+            const timeStatus = task._timeAllocated / (60 * 60 * 1000) > 1 ?
+                `${task._timeAllocated / (60 * 60 * 1000)} h` :
+                `${task._timeAllocated / (60 * 1000)} min`;
 
-            let entity = this.formEntity(`Zadanie: ${task._name}<br>Maksymalny czas: ${time}<br>
-            <progress max="100" value="${progressPercent}">${progressPercent}%</progress>`);
-            taskContainer.appendChild(entity);
+            const taskNode = this.formEntity(`Zadanie: ${task._name
+            }<br>Maksymalny czas: ${timeStatus
+            }<br>Czas zakończenia: ${new Date(task._pastDue).toLocaleTimeString()
+            }<br><progress class="task-time-remaining" max="100" value="${currentProgress}"></progress>`);
+            taskContainer.appendChild(taskNode);
+
             setInterval(() => {
-                progressPercent = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
-                entity.querySelector(`.result-block progress`).value = progressPercent;
+                currentProgress = (Math.abs(Date.now() - task._addedAt) / (task._pastDue - task._addedAt)) * 100;
+                taskNode.querySelector(`.result-block progress`).value = currentProgress;
             }, 1000);
         });
-        bindings.map(binding =>
-            bindingContainer.appendChild(
-                this.formEntity(`Pracownik: ${employees[binding._employeeId]._name}
-                ${employees[binding._employeeId]._surname}<br>
-                Zadanie: ${tasks[binding._taskId]._name}<br>
-                Rola: ${binding._role}`)));
+
+        bindings.map(binding => {
+            let currentRatio = 1;
+
+            const bindingNode = this.formEntity(`Pracownik: ${
+                employees[binding._employeeId]._name} ${employees[binding._employeeId]._surname
+            }<br>Zadanie: ${tasks[binding._taskId]._name
+            }<br>Rola: ${binding._role
+            }<br>Stosunek do czasu pracy pracownika: <progress class="task-employee-time-ratio" max="1" value="${
+                currentRatio}"></progress>`);
+            bindingContainer.appendChild(bindingNode);
+
+            setInterval(() => {
+                currentRatio = tasks[binding._taskId]._timeAllocated / (8 * 60 * 60 * 1000);
+                bindingNode.querySelector(`.result-block progress`).value = currentRatio;
+            }, 1000);
+        });
     }
 
     /**

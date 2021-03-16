@@ -1,11 +1,10 @@
 class Task {
     /**
      * @param {string} name Task description.
-     * @param {Date} timeAllocated Specified in whole hours.
+     * @param {Date} timeAllocated Specified in milliseconds.
      */
     constructor(name, timeAllocated) {
         let now = new Date(Date.now());
-        //let targetTime = now.setHours(now.getHours() + timeAllocated);
 
         this._name = name;
         this._timeAllocated = timeAllocated * 60 * 60 * 1000;
