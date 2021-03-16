@@ -23,7 +23,7 @@
 body {
     transition: background-image 0.3s ease-in-out;
     background: var(--color-banana);
-    background-image: url(../images/background.jpeg);
+    background-image: url(../assets/background.jpeg);
     background-size: 300px;
     background-repeat: repeat;
 }
